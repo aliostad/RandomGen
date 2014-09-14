@@ -67,7 +67,7 @@ Console.WriteLine(items());
 
 // items with equal distribution
 var items = Gen.RandomItems(new [] {"A", "B", "C"}, new [] {0.5, 6, 1.3});
-Console.WriteLine(items()); // with the likelihhod supplied
+Console.WriteLine(items()); // with the likelihhoods supplied
 
 
 ```
