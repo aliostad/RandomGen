@@ -61,13 +61,13 @@ Console.WriteLine(words());
 
 
 ``` CSharp
-// items with equal distribution
+// items with equal likelihood
 var items = Gen.RandomItems(new [] {"A", "B", "C"});
 Console.WriteLine(items()); 
 
-// items with equal distribution
+// with the likelihhoods supplied
 var items = Gen.RandomItems(new [] {"A", "B", "C"}, new [] {0.5, 6, 1.3});
-Console.WriteLine(items()); // with the likelihhoods supplied
+Console.WriteLine(items()); 
 
 
 ```
