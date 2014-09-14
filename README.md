@@ -5,6 +5,12 @@ A simple random generation tool. Can create random integer, double, boolean, dat
 
 ### Getting Started
 
+Install the library using Nuget:
+
+```
+PM> Install-Package RandomGen
+```
+
 Use Gen.xxx static methods to get a delegate that creates random values every time you call it.
 
 #### Simple types
