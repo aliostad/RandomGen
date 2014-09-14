@@ -5,7 +5,7 @@ A simple random generation tool. Can create random integer, double, boolean, dat
 
 ### Getting Started
 
-Use Gen.xxx static methods to get a delegate to create random numbers every time you call it.
+Use Gen.xxx static methods to get a delegate that creates random values every time you call it.
 
 #### Simple types
 
@@ -29,5 +29,48 @@ Console.WriteLine(booleans()); // true or false
 var dates = Gen.RandomDates(DateTime.Now.AddYears(-1), DateTime.Now);
 Console.WriteLine(date());
 
+// Normal Distribution
+var normals = Gen.RandomWithNormalDistribution(mean=23.4, standardDeviation=5.9);
+Console.WriteLine(normals());
 
 ```
+
+#### Names and words
+
+``` CSharp
+// male names
+var maleNames = Gen.RandomMaleNames();
+Console.WriteLine(maleNames());
+
+// female names
+var femaleNames = Gen.RandomFemaleNames();
+Console.WriteLine(femaleNames());
+
+// last names
+var surnames = Gen.RandomSurnames();
+Console.WriteLine(surnames());
+
+// words
+var words = Gen.RandomWords();
+Console.WriteLine(words());
+
+
+```
+
+#### Your custom objects
+
+
+``` CSharp
+// items with equal distribution
+var items = Gen.RandomItems(new [] {"A", "B", "C"});
+Console.WriteLine(items()); 
+
+// items with equal distribution
+var items = Gen.RandomItems(new [] {"A", "B", "C"}, new [] {0.5, 6, 1.3});
+Console.WriteLine(items()); // with the likelihhod supplied
+
+
+```
+
+
+
