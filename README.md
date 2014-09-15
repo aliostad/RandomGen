@@ -36,7 +36,7 @@ var dates = Gen.RandomDates(DateTime.Now.AddYears(-1), DateTime.Now);
 Console.WriteLine(date());
 
 // Normal Distribution
-var normals = Gen.RandomWithNormalDistribution(mean=23.4, standardDeviation=5.9);
+var normals = Gen.RandomWithNormalDistribution(mean: 23.4, standardDeviation: 5.9);
 Console.WriteLine(normals());
 
 ```
@@ -64,6 +64,9 @@ Console.WriteLine(surnames());
 var words = Gen.RandomWords();
 Console.WriteLine(words());
 
+// texts
+var texts = Gen.RandomTexts(length: 100);
+Console.WriteLine(texts());
 
 ```
 
@@ -75,7 +78,7 @@ Console.WriteLine(words());
 var items = Gen.RandomItems(new [] {"A", "B", "C"});
 Console.WriteLine(items()); 
 
-// with the likelihhoods supplied
+// with the likelihoods supplied
 var items = Gen.RandomItems(new [] {"A", "B", "C"}, new [] {0.5, 6, 1.3});
 Console.WriteLine(items()); 
 

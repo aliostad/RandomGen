@@ -221,5 +221,29 @@ namespace RandomGen
             var factory = RandomIntegers(0, length);
             return () => _words.Value[factory()];
         }
+
+        /// <summary>
+        /// Generates random texts, each of the provider length.
+        /// Based on 350,000 English words taken from
+        /// http://www.math.sjsu.edu/~foster/dictionary.txt
+        /// </summary>
+        /// <returns></returns>
+        public static Func<string> RandomTexts(int length = 50)
+        {
+            if(length <= 0)
+                throw new ArgumentOutOfRangeException("length", "length must be a positive number");
+
+            var factory = RandomWords();
+
+            return () => 
+            {
+                var builder = new StringBuilder(length + 20);
+
+                while (builder.Length < length)
+                    builder.Append(factory()).Append(" ");
+
+                return builder.ToString().Substring(0, length);
+            };
+        }
     }
 }

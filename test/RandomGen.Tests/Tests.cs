@@ -84,6 +84,19 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void RandomTextsGeneratesNotEmpty()
+        {
+            var texts = Gen.RandomTexts(100);
+            for (int i = 0; i < 100; i++)
+            {
+                var text = texts();
+                Assert.NotEmpty(text);
+                Assert.Equal(100, text.Length);
+                Console.WriteLine(text);
+            }
+        }
+
+        [Fact]
         public void ListLikelihoodWeightsWorks()
         {
             var items = Gen.RandomItems(new[] {"A", "B"}, new [] { 0.1, 2.0});
