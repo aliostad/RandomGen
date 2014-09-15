@@ -52,6 +52,10 @@ Console.WriteLine(maleNames());
 var femaleNames = Gen.RandomFemaleNames();
 Console.WriteLine(femaleNames());
 
+// random mix of male and female names
+var firstNames = Gen.RandomFirstNames();
+Console.WriteLine(firstNames());
+
 // last names
 var surnames = Gen.RandomSurnames();
 Console.WriteLine(surnames());
