@@ -48,6 +48,18 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void RandomFirstNameGeneratesNotEmpty()
+        {
+            var names = Gen.RandomFirstNames();
+            for (int i = 0; i < 100; i++)
+            {
+                var name = names();
+                Assert.NotEmpty(name);
+                Console.WriteLine(name);
+            }
+        }
+
+        [Fact]
         public void RandomSurameGeneratesNotEmpty()
         {
             var names = Gen.RandomSurnames();

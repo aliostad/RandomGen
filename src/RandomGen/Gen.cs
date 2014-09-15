@@ -13,7 +13,7 @@ namespace RandomGen
 
         private static Lazy<string[]> _maleNames = new Lazy<string[]>(GetMaleNames);
         private static Lazy<string[]> _femaleNames = new Lazy<string[]>(GetFemaleNames);
-        private static Lazy<string[]> _sunames = new Lazy<string[]>(GetSurnames);
+        private static Lazy<string[]> _surnames = new Lazy<string[]>(GetSurnames);
         private static Lazy<string[]> _words = new Lazy<string[]>(GetWords);
 
         private static string[] GetMaleNames()
@@ -38,16 +38,18 @@ namespace RandomGen
 
         private static string[] GetResourceStrings(string fileName)
         {
-            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("RandomGen.Data." + fileName);
-            var reader = new StreamReader(stream);
-            var list = new List<string>();
-            string line = null;
-            while ((line = reader.ReadLine())!=null)
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("RandomGen.Data." + fileName))
+            using (var reader = new StreamReader(stream))
             {
-                if(!string.IsNullOrEmpty(line))
-                    list.Add(line);
+                var list = new List<string>();
+                string line = null;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (!string.IsNullOrEmpty(line))
+                        list.Add(line);
+                }
+                return list.ToArray();
             }
-            return list.ToArray();
         }
 
         public static Func<int> RandomIntegers(int min = 0, int max = 100)
@@ -87,19 +89,17 @@ namespace RandomGen
         /// <returns></returns>
         public static Func<DateTime> RandomDates(DateTime? min = null, DateTime? max = null)
         {
-            if (min.HasValue & max.HasValue & min >= max)
+            var minDate = min.GetValueOrDefault(DateTime.MinValue);
+            var maxDate = min.GetValueOrDefault(DateTime.MaxValue);
+
+            if (minDate >= maxDate)
                 throw new ArgumentOutOfRangeException("min >= max");
 
-            if (!min.HasValue)
-                min = DateTime.MinValue;
-
-            if (!max.HasValue)
-                max = DateTime.MaxValue;
-
             var random = new Random();
-            return () => new DateTime( Convert.ToInt64(min.Value.Ticks + 
-               ((max.Value.Ticks - min.Value.Ticks) 
-                * random.NextDouble())));
+            var ticksSpan = maxDate.Ticks - minDate.Ticks;
+
+            return () => new DateTime( Convert.ToInt64(minDate.Ticks + 
+               (ticksSpan * random.NextDouble())));
         }
 
         /// <summary>
@@ -190,11 +190,24 @@ namespace RandomGen
         /// http://www.census.gov/genealogy/www/data/1990surnames/names_files.html
         /// </summary>
         /// <returns></returns>
+        public static Func<string> RandomFirstNames()
+        {
+            var sources = new[] { RandomMaleNames(), RandomFemaleNames() };
+            var factory = RandomIntegers(max: 1);
+
+            return () => sources[factory()]();
+        }
+
+        /// <summary>
+        /// According to US Census Data
+        /// http://www.census.gov/genealogy/www/data/1990surnames/names_files.html
+        /// </summary>
+        /// <returns></returns>
         public static Func<string> RandomSurnames()
         {
-            var length = _sunames.Value.Length;
+            var length = _surnames.Value.Length;
             var factory = RandomIntegers(0, length);
-            return () => _sunames.Value[factory()];
+            return () => _surnames.Value[factory()];
         }
 
         /// <summary>
@@ -208,6 +221,5 @@ namespace RandomGen
             var factory = RandomIntegers(0, length);
             return () => _words.Value[factory()];
         }
-
     }
 }
