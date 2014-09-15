@@ -11,8 +11,5 @@
     <description>$description$</description>
     <copyright>Copyright 2012</copyright>
     <tags>random randomise normal distribution female male name surname word</tags>
-    <dependencies>
-      <dependency id="RandomGen" version="$version$" />
-    </dependencies>
   </metadata>
 </package>
