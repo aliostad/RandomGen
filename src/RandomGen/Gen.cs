@@ -25,10 +25,12 @@ namespace RandomGen
         {
             return GetResourceStrings("dist.female.first.txt");
         }
+        
         private static string[] GetSurnames()
         {
             return GetResourceStrings("dist.all.last.txt");
         }
+        
         private static string[] GetWords()
         {
             return GetResourceStrings("dictionary.txt");
@@ -48,7 +50,7 @@ namespace RandomGen
             return list.ToArray();
         }
 
-        public static Func<int> RandomIntegers(int min=0, int max=100)
+        public static Func<int> RandomIntegers(int min = 0, int max = 100)
         {
             if(min >= max)
                 throw new ArgumentOutOfRangeException("min >= max");
@@ -83,7 +85,7 @@ namespace RandomGen
         /// <param name="min">if not supplied, DateTime.MinValue is used</param>
         /// <param name="max">if not supplied, DateTime.MaxValue is used</param>
         /// <returns></returns>
-        public static Func<DateTime> RandomDates(DateTime? min, DateTime? max)
+        public static Func<DateTime> RandomDates(DateTime? min = null, DateTime? max = null)
         {
             if (min.HasValue & max.HasValue & min >= max)
                 throw new ArgumentOutOfRangeException("min >= max");
