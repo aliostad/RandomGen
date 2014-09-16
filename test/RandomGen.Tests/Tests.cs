@@ -177,5 +177,19 @@ namespace RandomGen.Tests
             }
         }
 
+        [Fact]
+        public void ToEnumerable()
+        {
+            int i = 0;
+            foreach (var l in Gen.RandomLongs().ToEnumerable())
+            {
+                Console.WriteLine(l);   
+                if(i++>100)
+                    return;
+            }
+            
+        }
+
+
     }
 }

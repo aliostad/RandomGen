@@ -7,7 +7,7 @@ namespace RandomGen
 {
     public static class FuncExtensions
     {
-        public static IEnumerable<T> ToEnumerable<T>(Func<T> gen)
+        public static IEnumerable<T> ToEnumerable<T>(this Func<T> gen)
         {
             while (true)
             {
