@@ -90,7 +90,7 @@ namespace RandomGen
         public static Func<DateTime> RandomDates(DateTime? min = null, DateTime? max = null)
         {
             var minDate = min.GetValueOrDefault(DateTime.MinValue);
-            var maxDate = min.GetValueOrDefault(DateTime.MaxValue);
+            var maxDate = max.GetValueOrDefault(DateTime.MaxValue);
 
             if (minDate >= maxDate)
                 throw new ArgumentOutOfRangeException("min >= max");
