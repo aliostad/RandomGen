@@ -9,7 +9,8 @@
     <projectUrl>https://github.com/aliostad/RandomGen</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <copyright>Copyright 2012</copyright>
+    <copyright>Copyright 2014</copyright>
+	<licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <tags>random randomise normal distribution female male name surname word</tags>
   </metadata>
 </package>
