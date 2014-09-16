@@ -67,6 +67,15 @@ namespace RandomGen
             return () => random.Next(min, max);
         }
 
+        public static Func<long> RandomLongs(long min = 0, long max = 100)
+        {
+            if (min >= max)
+                throw new ArgumentOutOfRangeException("min >= max");
+
+            var gen = RandomDoubles(min, max);
+            return () => (long) gen();
+        }
+
         public static Func<bool> RandomBooleans()
         {
             var random = new Random();
@@ -167,6 +176,25 @@ namespace RandomGen
             return () => mean + standardDeviation * randStdNormal; //random normal(mean,stdDev^2)
         }
 
+        /// <summary>
+        /// Creates TimeSpan intervals between two optional ranges
+        /// </summary>
+        /// <param name="min">if null, TimeSpan.Zero</param>
+        /// <param name="max">if null, 1 year is used</param>
+        /// <returns></returns>
+        public static Func<TimeSpan> RandomTimeSpans(TimeSpan? min = null, TimeSpan? max = null)
+        {
+            if (min >= max)
+                throw new ArgumentOutOfRangeException("min >= max");
+
+            min = min ?? TimeSpan.Zero;
+            max = max ?? TimeSpan.FromDays(365);
+
+            var gen = RandomLongs(min.Value.Ticks, max.Value.Ticks);
+
+            return () => new TimeSpan(gen());
+
+        }
 
         /// <summary>
         /// According to US Census Data

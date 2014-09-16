@@ -145,5 +145,37 @@ namespace RandomGen.Tests
                 Console.WriteLine(emailAddress);
             }
         }
+
+        [Fact]
+        public void RandomLongs()
+        {
+            long min = 100L;
+            long max = 345345;
+            var longs = Gen.RandomLongs(min, max);
+            for (int i = 0; i < 100; i++)
+            {
+                var l = longs();
+                Assert.True(l >= min);
+                Assert.True(l < max);
+                Console.WriteLine(l);
+            }
+        }
+
+        [Fact]
+        public void RandomTimeSpans()
+        {
+            var min = TimeSpan.FromMilliseconds(200);
+            var max = TimeSpan.FromDays(200);
+            var timespans = Gen.RandomTimeSpans(min, max);
+
+            for (int i = 0; i < 100; i++)
+            {
+                var ts = timespans();
+                Assert.True(ts >= min);
+                Assert.True(ts < max);
+                Console.WriteLine(ts);
+            }
+        }
+
     }
 }
