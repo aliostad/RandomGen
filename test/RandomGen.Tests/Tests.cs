@@ -119,5 +119,31 @@ namespace RandomGen.Tests
                 Console.WriteLine(item);
             }
         }
+
+        [Fact]
+        public void RandomTopLevelDomainsGeneratesNotEmpty()
+        {
+            var domains = Gen.RandomTopLevelDomains();
+            for (int i = 0; i < 100; i++)
+            {
+                var domain = domains();
+                Assert.NotEmpty(domain);
+                Console.WriteLine(domain);
+            }
+        }
+
+        [Fact]
+        public void RandomEmailAddressesGeneratesNotEmpty()
+        {
+            var emailAddresses = Gen.RandomEmailAddresses();
+            for (int i = 0; i < 100; i++)
+            {
+                var emailAddress = emailAddresses();
+                Assert.NotEmpty(emailAddress);
+                Assert.Contains("@", emailAddress);
+                Assert.Contains(".", emailAddress);
+                Console.WriteLine(emailAddress);
+            }
+        }
     }
 }

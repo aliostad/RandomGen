@@ -16,6 +16,7 @@ namespace RandomGen
         private static Lazy<string[]> _femaleNames = new Lazy<string[]>(GetFemaleNames);
         private static Lazy<string[]> _surnames = new Lazy<string[]>(GetSurnames);
         private static Lazy<string[]> _words = new Lazy<string[]>(GetWords);
+        private static Lazy<string[]> _topLevelDomains = new Lazy<string[]>(GetTopLevelDomains);
 
         private static string[] GetMaleNames()
         {
@@ -31,10 +32,15 @@ namespace RandomGen
         {
             return GetResourceStrings("dist.all.last.txt");
         }
-        
+
         private static string[] GetWords()
         {
             return GetResourceStrings("dictionary.txt");
+        }
+
+        private static string[] GetTopLevelDomains()
+        {
+            return GetResourceStrings("dist.tld.txt");
         }
 
         private static string[] GetResourceStrings(string fileName)
@@ -258,8 +264,32 @@ namespace RandomGen
                 .Select(culture => new RegionInfo(culture.LCID).EnglishName)
                 .Distinct()
                 .ToList();
-            
+
             return RandomItems(data);
+        }
+
+        /// <summary>
+        /// Generates random top level domains
+        /// Based on http://www.iana.org/domains/root/db
+        /// </summary>
+        /// <returns></returns>
+        public static Func<string> RandomTopLevelDomains()
+        {
+            var length = _topLevelDomains.Value.Length;
+            var factory = RandomIntegers(0, length);
+            return () => _topLevelDomains.Value[factory()];
+        }
+
+        /// <summary>
+        /// Generates random email addresses
+        /// </summary>
+        /// <returns></returns>
+        public static Func<string> RandomEmailAddresses()
+        {
+            var wordFactory = RandomWords();
+            var domainFactory = RandomTopLevelDomains();
+
+            return () => string.Concat(wordFactory(), "@", wordFactory(), domainFactory());
         }
     }
 }

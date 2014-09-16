@@ -43,7 +43,9 @@
     <Compile Include="Gen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Data\dist.tld.txt" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\dictionary.txt" />
     <EmbeddedResource Include="Data\dist.all.last.txt" />

@@ -72,6 +72,14 @@ Console.WriteLine(texts());
 var countries = Gen.RandomCountries();
 Console.WriteLine(countries());
 
+// top level domains
+var domains = Gen.RandomTopLevelDomains();
+Console.WriteLine(domains());
+
+// email addresses
+var addresses = Gen.RandomEmailAddresses();
+Console.WriteLine(addresses());
+
 ```
 
 #### Your custom objects
