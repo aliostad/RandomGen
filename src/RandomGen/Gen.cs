@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -230,12 +231,12 @@ namespace RandomGen
         /// <returns></returns>
         public static Func<string> RandomTexts(int length = 50)
         {
-            if(length <= 0)
+            if (length <= 0)
                 throw new ArgumentOutOfRangeException("length", "length must be a positive number");
 
             var factory = RandomWords();
 
-            return () => 
+            return () =>
             {
                 var builder = new StringBuilder(length + 20);
 
@@ -244,6 +245,21 @@ namespace RandomGen
 
                 return builder.ToString().Substring(0, length);
             };
+        }
+
+        /// <summary>
+        /// Generates random country names
+        /// Based on System.Globalisation
+        /// </summary>
+        /// <returns></returns>
+        public static Func<string> RandomCountries()
+        {
+            var data = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+                .Select(culture => new RegionInfo(culture.LCID).EnglishName)
+                .Distinct()
+                .ToList();
+            
+            return RandomItems(data);
         }
     }
 }

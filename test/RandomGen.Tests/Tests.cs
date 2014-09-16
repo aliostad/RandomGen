@@ -97,6 +97,18 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void RandomCountriesGeneratesNotEmpty()
+        {
+            var texts = Gen.RandomCountries();
+            for (int i = 0; i < 100; i++)
+            {
+                var text = texts();
+                Assert.NotEmpty(text);
+                Console.WriteLine(text);
+            }
+        }
+
+        [Fact]
         public void ListLikelihoodWeightsWorks()
         {
             var items = Gen.RandomItems(new[] {"A", "B"}, new [] { 0.1, 2.0});

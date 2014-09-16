@@ -68,6 +68,10 @@ Console.WriteLine(words());
 var texts = Gen.RandomTexts(length: 100);
 Console.WriteLine(texts());
 
+// countries
+var countries = Gen.RandomCountries();
+Console.WriteLine(countries());
+
 ```
 
 #### Your custom objects
