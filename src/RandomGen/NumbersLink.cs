@@ -32,7 +32,9 @@ namespace RandomGen
 
         public Func<bool> Booleans()
         {
-            return () => this.Integers(max: 1)() % 2 == 0;
+            var factory = this.Integers(max: 2);
+            
+            return () => factory() % 2 == 0;
         }
 
         public IDouble Doubles()

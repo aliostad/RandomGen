@@ -7,9 +7,8 @@ using Xunit;
 
 namespace RandomGen.Tests
 {
-    public class Tests
+    public class RandomTests
     {
-
         [Fact]
         public void DateIsBetweenRange()
         {
@@ -204,6 +203,23 @@ namespace RandomGen.Tests
             
         }
 
+        [Fact]
+        public void Booleans()
+        {
+            var trueCount = 0;
+            var booleans = Gen.Random.Numbers.Booleans();
 
+            for (int i = 0; i < 100; i++)
+            {
+                var boolean = booleans();
+
+                if (boolean)
+                    ++trueCount;
+
+                Console.WriteLine(boolean);
+            }
+
+            Assert.InRange(trueCount, 1, 99);
+        }
     }
 }

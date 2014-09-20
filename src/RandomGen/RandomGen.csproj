@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateChangeByLink.cs" />
+    <Compile Include="Fluent\IDateChangeBy.cs" />
+    <Compile Include="Fluent\IDateChange.cs" />
     <Compile Include="Fluent\IInternet.cs" />
     <Compile Include="Fluent\ITime.cs" />
     <Compile Include="Fluent\IDouble.cs" />
@@ -50,6 +53,7 @@
     <Compile Include="Fluent\IText.cs" />
     <Compile Include="DoublesLink.cs" />
     <Compile Include="InternetLink.cs" />
+    <Compile Include="DateChangeLink.cs" />
     <Compile Include="TimeLink.cs" />
     <Compile Include="NumbersLink.cs" />
     <Compile Include="TextLink.cs" />

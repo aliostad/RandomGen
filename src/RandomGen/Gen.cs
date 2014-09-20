@@ -15,6 +15,11 @@ namespace RandomGen
         private static Random _random = new Random();
 
         public static IRandom Random { get { return new RandomLink(_random); } }
+        
+        public static IDateChange Change(DateTime date) 
+        {
+            return new DateChangeLink(new RandomLink(_random), date);
+        }
 
         internal static string[] GetResourceStrings(string fileName)
         {
