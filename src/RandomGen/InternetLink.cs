@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using RandomGen.Fluent;
 
-namespace RandomGen.Fluent
+namespace RandomGen
 {
     class InternetLink : IInternet
     {

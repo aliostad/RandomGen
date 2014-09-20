@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using RandomGen.Fluent;
 
-namespace RandomGen.Fluent
+namespace RandomGen
 {
     class RandomLink : IRandom
     {
