@@ -47,6 +47,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DecimalChangeTests.cs" />
+    <Compile Include="DoubleChangeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DateChangeTests.cs" />
     <Compile Include="RandomTests.cs" />

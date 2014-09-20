@@ -20,7 +20,7 @@ namespace RandomGen
         public IDateChangeBy By(int value)
         {
             if (value <= 0)
-                throw new ArgumentOutOfRangeException("value", value, "value must be greater than 1");
+                throw new ArgumentOutOfRangeException("value", value, "value must be greater than 0");
 
             return new DateChangeByLink(_random, _date, value);
         }
@@ -29,6 +29,7 @@ namespace RandomGen
         {
             var offset = _random.Numbers.Longs(value.Ticks * -1, value.Ticks)();
 
-            return _date.Add(TimeSpan.FromTicks(offset));        }
+            return _date.Add(TimeSpan.FromTicks(offset));       
+        }
     }
 }

@@ -40,7 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DecimalChangeByLink.cs" />
+    <Compile Include="DoubleChangeByLink.cs" />
     <Compile Include="DateChangeByLink.cs" />
+    <Compile Include="DecimalChangeLink.cs" />
+    <Compile Include="DoubleChangeLink.cs" />
+    <Compile Include="Fluent\IDecimalChange.cs" />
+    <Compile Include="Fluent\IDecimalChangeBy.cs" />
+    <Compile Include="Fluent\IDoubleChangeBy.cs" />
+    <Compile Include="Fluent\IDoubleChange.cs" />
     <Compile Include="Fluent\IDateChangeBy.cs" />
     <Compile Include="Fluent\IDateChange.cs" />
     <Compile Include="Fluent\IInternet.cs" />
