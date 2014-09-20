@@ -34,11 +34,13 @@ namespace RandomGen
 
         public Func<string> Urls()
         {
-            var schemasFactory = _random.Items(new []{"http", "https", "ftp"}, new[] { 1, 1, 0.25 });
-            var hostFactory = _random.Text.Words();
+            var schemeFactory = _random.Items(new []{"http", "https", "ftp"}, new[] { 1, 1, 0.25 });
+            var hostSegments = _random.Numbers.Integers(1, 3);
+            Func<string> hostFactory = () => string.Join(".", _random.Text.Words().ToEnumerable().Take(hostSegments()));
+
             var domainFactory = this.TopLevelDomains();
 
-            return () => string.Concat(schemasFactory(), "://", hostFactory(), domainFactory());
+            return () => string.Concat(schemeFactory(), "://", hostFactory(), domainFactory());
         }
 
         private static string[] GetTopLevelDomains()
