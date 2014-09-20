@@ -15,7 +15,7 @@ namespace RandomGen.Tests
         {
             var min = DateTime.Now.AddYears(-10);
             var max = DateTime.Now;
-            var randomDates = Gen.RandomDates(min, max);
+            var randomDates = Gen.Random.Time.Dates(min, max);
 
             for (int i = 0; i < 100; i++)
             {
@@ -26,7 +26,7 @@ namespace RandomGen.Tests
         [Fact]
         public void RandomFemaleNameGeneratesNotEmpty()
         {
-            var names = Gen.RandomFemaleNames();
+            var names = Gen.Random.Names.Female();
             for (int i = 0; i < 100; i++)
             {
                 var name = names();
@@ -38,7 +38,7 @@ namespace RandomGen.Tests
         [Fact]
         public void RandomMaleNameGeneratesNotEmpty()
         {
-            var names = Gen.RandomMaleNames();
+            var names = Gen.Random.Names.Male();
             for (int i = 0; i < 100; i++)
             {
                 var name = names();
@@ -50,7 +50,7 @@ namespace RandomGen.Tests
         [Fact]
         public void RandomFirstNameGeneratesNotEmpty()
         {
-            var names = Gen.RandomFirstNames();
+            var names = Gen.Random.Names.First();
             for (int i = 0; i < 100; i++)
             {
                 var name = names();
@@ -62,7 +62,7 @@ namespace RandomGen.Tests
         [Fact]
         public void RandomSurameGeneratesNotEmpty()
         {
-            var names = Gen.RandomSurnames();
+            var names = Gen.Random.Names.Surname();
             for (int i = 0; i < 100; i++)
             {
                 var name = names();
@@ -74,7 +74,7 @@ namespace RandomGen.Tests
         [Fact]
         public void RandomWordsGeneratesNotEmpty()
         {
-            var words = Gen.RandomWords();
+            var words = Gen.Random.Text.Words();
             for (int i = 0; i < 100; i++)
             {
                 var word = words();
@@ -86,7 +86,7 @@ namespace RandomGen.Tests
         [Fact]
         public void RandomTextsGeneratesNotEmpty()
         {
-            var texts = Gen.RandomTexts(100);
+            var texts = Gen.Random.Text.Length(100);
             for (int i = 0; i < 100; i++)
             {
                 var text = texts();
@@ -99,7 +99,7 @@ namespace RandomGen.Tests
         [Fact]
         public void RandomCountriesGeneratesNotEmpty()
         {
-            var texts = Gen.RandomCountries();
+            var texts = Gen.Random.Countries();
             for (int i = 0; i < 100; i++)
             {
                 var text = texts();
@@ -111,7 +111,7 @@ namespace RandomGen.Tests
         [Fact]
         public void ListLikelihoodWeightsWorks()
         {
-            var items = Gen.RandomItems(new[] {"A", "B"}, new [] { 0.1, 2.0});
+            var items = Gen.Random.Items(new[] {"A", "B"}, new [] { 0.1, 2.0});
             for (int i = 0; i < 100; i++)
             {
                 var item = items();
@@ -123,7 +123,7 @@ namespace RandomGen.Tests
         [Fact]
         public void RandomTopLevelDomainsGeneratesNotEmpty()
         {
-            var domains = Gen.RandomTopLevelDomains();
+            var domains = Gen.Random.Internet.TopLevelDomains();
             for (int i = 0; i < 100; i++)
             {
                 var domain = domains();
@@ -135,7 +135,7 @@ namespace RandomGen.Tests
         [Fact]
         public void RandomEmailAddressesGeneratesNotEmpty()
         {
-            var emailAddresses = Gen.RandomEmailAddresses();
+            var emailAddresses = Gen.Random.Internet.EmailAddresses();
             for (int i = 0; i < 100; i++)
             {
                 var emailAddress = emailAddresses();
@@ -147,11 +147,25 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void RandomUrlsGeneratesNotEmpty()
+        {
+            var urls = Gen.Random.Internet.Urls();
+            for (int i = 0; i < 100; i++)
+            {
+                var url = urls();
+                Assert.NotEmpty(url);
+                Assert.Contains("://", url);
+                Assert.Contains(".", url);
+                Console.WriteLine(url);
+            }
+        }
+
+        [Fact]
         public void RandomLongs()
         {
             long min = 100L;
             long max = 345345;
-            var longs = Gen.RandomLongs(min, max);
+            var longs = Gen.Random.Numbers.Longs(min, max);
             for (int i = 0; i < 100; i++)
             {
                 var l = longs();
@@ -166,7 +180,7 @@ namespace RandomGen.Tests
         {
             var min = TimeSpan.FromMilliseconds(200);
             var max = TimeSpan.FromDays(200);
-            var timespans = Gen.RandomTimeSpans(min, max);
+            var timespans = Gen.Random.Time.Spans(min, max);
 
             for (int i = 0; i < 100; i++)
             {
@@ -181,7 +195,7 @@ namespace RandomGen.Tests
         public void ToEnumerable()
         {
             int i = 0;
-            foreach (var l in Gen.RandomLongs().ToEnumerable())
+            foreach (var l in Gen.Random.Numbers.Longs().ToEnumerable())
             {
                 Console.WriteLine(l);   
                 if(i++>100)

@@ -40,6 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fluent\IInternet.cs" />
+    <Compile Include="Fluent\ITime.cs" />
+    <Compile Include="Fluent\IDouble.cs" />
+    <Compile Include="Fluent\IFluentInterface.cs" />
+    <Compile Include="Fluent\INumbers.cs" />
+    <Compile Include="Fluent\INames.cs" />
+    <Compile Include="Fluent\IRandom.cs" />
+    <Compile Include="Fluent\IText.cs" />
+    <Compile Include="Fluent\DoublesLink.cs" />
+    <Compile Include="Fluent\InternetLink.cs" />
+    <Compile Include="Fluent\TimeLink.cs" />
+    <Compile Include="Fluent\NumbersLink.cs" />
+    <Compile Include="Fluent\TextLink.cs" />
+    <Compile Include="Fluent\NamesLink.cs" />
+    <Compile Include="Fluent\RandomLink.cs" />
     <Compile Include="FuncExtensions.cs" />
     <Compile Include="Gen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
