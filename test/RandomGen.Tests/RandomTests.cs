@@ -59,13 +59,26 @@ namespace RandomGen.Tests
         }
 
         [Fact]
-        public void RandomSurameGeneratesNotEmpty()
+        public void RandomSurnameGeneratesNotEmpty()
         {
             var names = Gen.Random.Names.Surname();
             for (int i = 0; i < 100; i++)
             {
                 var name = names();
                 Assert.NotEmpty(name);
+                Console.WriteLine(name);
+            }
+        }
+
+        [Fact]
+        public void RandomFullnameGeneratesNotEmpty()
+        {
+            var names = Gen.Random.Names.Full();
+            for (int i = 0; i < 100; i++)
+            {
+                var name = names();
+                Assert.NotEmpty(name);
+                Assert.Contains(" ", name);
                 Console.WriteLine(name);
             }
         }
