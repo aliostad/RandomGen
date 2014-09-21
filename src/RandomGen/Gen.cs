@@ -31,6 +31,11 @@ namespace RandomGen
             return new DecimalChangeLink(new RandomLink(_random), amount);
         }
 
+        public static ILongChange Change(long amount)
+        {
+            return new LongChangeLink(new RandomLink(_random), amount);
+        }
+
         internal static string[] GetResourceStrings(string fileName)
         {
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("RandomGen.Data." + fileName))
