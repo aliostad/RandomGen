@@ -7,14 +7,14 @@ using Xunit;
 
 namespace RandomGen.Tests
 {
-    public class LongChangeTests
+    public class IntChangeTests
     {
         [Fact]
         public void BePercent()
         {
-            var amount = 42L;
+            var amount = 42;
 
-            foreach (var by in Gen.Random.Numbers.Longs(1, 1000).ToEnumerable().Take(100))
+            foreach (var by in Gen.Random.Numbers.Integers(1, 1000).ToEnumerable().Take(100))
             {
                 var result = Gen.Change(amount).By(by).Percent();
 
@@ -26,9 +26,9 @@ namespace RandomGen.Tests
         [Fact]
         public void ByAmount()
         {
-            var amount = 42L;
+            var amount = 42;
 
-            foreach (var by in Gen.Random.Numbers.Longs(1, 1000).ToEnumerable().Take(100))
+            foreach (var by in Gen.Random.Numbers.Integers(1, 1000).ToEnumerable().Take(100))
             {
                 var result = Gen.Change(amount).By(by).Amount();
 

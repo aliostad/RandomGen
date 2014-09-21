@@ -18,7 +18,7 @@ namespace RandomGen.Tests
             {
                 var result = Gen.Change(amount).By(by).Percent();
 
-                Console.WriteLine("{0} ±{1} -> {2}", amount, by, result);
+                Console.WriteLine("{0} ±{1}% -> {2}", amount, by, result);
                 Assert.InRange(result, amount - (amount * by / 100.0), amount + (amount * by / 100.0));
             }
         }

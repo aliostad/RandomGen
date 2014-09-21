@@ -41,10 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DecimalChangeByLink.cs" />
+    <Compile Include="Fluent\IIntChange.cs" />
+    <Compile Include="Fluent\IIntChangeBy.cs" />
+    <Compile Include="IntChangeByLink.cs" />
     <Compile Include="LongChangeByLink.cs" />
     <Compile Include="DoubleChangeByLink.cs" />
     <Compile Include="DateChangeByLink.cs" />
     <Compile Include="DecimalChangeLink.cs" />
+    <Compile Include="IntChangeLink.cs" />
     <Compile Include="LongChangeLink.cs" />
     <Compile Include="DoubleChangeLink.cs" />
     <Compile Include="Fluent\IDecimalChange.cs" />

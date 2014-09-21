@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DecimalChangeTests.cs" />
+    <Compile Include="IntChangeTests.cs" />
     <Compile Include="LongChangeTests.cs" />
     <Compile Include="DoubleChangeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
