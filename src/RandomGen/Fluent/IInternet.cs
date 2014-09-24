@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace RandomGen.Fluent
@@ -19,5 +20,7 @@ namespace RandomGen.Fluent
         Func<string> EmailAddresses();
 
         Func<string> Urls();
+
+        Func<IPAddress> IPAddresses();
     }
 }

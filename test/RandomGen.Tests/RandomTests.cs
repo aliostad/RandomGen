@@ -173,6 +173,18 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void RandomIPAddressesGeneratesNotEmpty()
+        {
+            var addresses = Gen.Random.Internet.IPAddresses();
+            for (int i = 0; i < 100; i++)
+            {
+                var address = addresses();
+                Assert.Equal(3, address.ToString().Count(x => x == '.'));
+                Console.WriteLine(address.ToString());
+            }
+        }
+
+        [Fact]
         public void RandomLongs()
         {
             long min = 100L;

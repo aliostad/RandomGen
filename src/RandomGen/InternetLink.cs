@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using RandomGen.Fluent;
 
@@ -46,6 +47,13 @@ namespace RandomGen
         private static string[] GetTopLevelDomains()
         {
             return Gen.GetResourceStrings("dist.tld.txt");
+        }
+
+        public Func<IPAddress> IPAddresses()
+        {
+            var parts = Gen.Random.Numbers.Integers(0, 255);
+
+            return () => new IPAddress(new byte[] { (byte)parts(), (byte)parts(), (byte)parts(), (byte)parts() });
         }
     }
 }
