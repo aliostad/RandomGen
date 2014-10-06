@@ -9,14 +9,6 @@ namespace RandomGen
 {
     class RandomLink : IRandom
     {
-        // Single instance of random generator shared by all links
-        internal readonly Random Random;
-
-        public RandomLink(Random random)
-        {
-            this.Random = random;
-        }
-
         public INumbers Numbers { get { return new NumbersLink(this); } }
         public INames Names { get { return new NamesLink(this); } }
         public ITime Time { get { return new TimeLink(this); } }

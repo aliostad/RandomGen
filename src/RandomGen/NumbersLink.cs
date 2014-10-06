@@ -19,8 +19,10 @@ namespace RandomGen
         {
             if (min >= max)
                 throw new ArgumentOutOfRangeException("min >= max");
+
+            var random = Gen.CreateRandom();
             
-            return () => _randomLink.Random.Next(min, max);
+            return () => random.Next(min, max);
         }
 
         public Func<long> Longs(long min = 0, long max = 100)
@@ -48,10 +50,10 @@ namespace RandomGen
                 throw new ArgumentOutOfRangeException("min >= max");
 
             var range = max - min;
+            var random = Gen.CreateRandom();
 
-            return () => min + (range * _randomLink.Random.NextDouble());
+            return () => min + (range * random.NextDouble());
         }
-
 
         public Func<decimal> Decimals(decimal min = 0, decimal max = 1)
         {
@@ -59,8 +61,9 @@ namespace RandomGen
                 throw new ArgumentOutOfRangeException("min >= max");
 
             var range = max - min;
+            var random = Gen.CreateRandom();
 
-            return () => min + (range * (decimal)_randomLink.Random.NextDouble());
+            return () => min + (range * (decimal)random.NextDouble());
         }
     }
 }

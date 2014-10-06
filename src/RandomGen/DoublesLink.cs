@@ -17,8 +17,8 @@ namespace RandomGen
 
         public Func<double> WithNormalDistribution(double mean, double standardDeviation)
         {
-            double u1 = _randomLink.Random.NextDouble(); //these are uniform(0,1) random doubles
-            double u2 = _randomLink.Random.NextDouble();
+            double u1 = Gen.CreateRandom().NextDouble(); //these are uniform(0,1) random doubles
+            double u2 = Gen.CreateRandom().NextDouble();
 
             double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) *
                          Math.Sin(2.0 * Math.PI * u2); //random normal(0,1)
