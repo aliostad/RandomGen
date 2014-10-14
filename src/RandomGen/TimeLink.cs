@@ -49,6 +49,5 @@ namespace RandomGen
             return () => new TimeSpan(_random.Numbers.Longs(minSpan.Ticks, maxSpan.Ticks)());
 
         }
-
     }
 }
