@@ -128,3 +128,14 @@ Console.WriteLine(newAmount);
 ```
 
 
+#### Providing seed value
+
+You can provide own seed value for random generator by calling WithSeed(int seed) method.
+This can be useful when you need to randomize data set in a predictable way, for example during testing.
+
+``` CSharp
+var seed = 12345;
+var number1 = Gen.WithSeed(seed).Random.Numbers.Integers()();
+var number2 = Gen.WithSeed(seed).Random.Numbers.Integers()();
+Console.WriteLine("{0} = {1}", number1, number2); 
+```
