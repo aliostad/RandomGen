@@ -8,12 +8,12 @@ namespace RandomGen
 {
     class DoubleChangeLink : IDoubleChange
     {
-        private readonly RandomLink _random;
+        private readonly GenLink _gen;
         private readonly double _amount;
 
-        internal DoubleChangeLink(RandomLink random, double amount)
+        internal DoubleChangeLink(GenLink gen, double amount)
         {
-            this._random = random;
+            this._gen = gen;
             this._amount = amount;
         }
 
@@ -22,7 +22,7 @@ namespace RandomGen
             if (value <= 0)
                 throw new ArgumentOutOfRangeException("value", value, "value must be greater than 0");
 
-            return new DoubleChangeByLink(_random, _amount, value);
+            return new DoubleChangeByLink(_gen, _amount, value);
         }
     }
 }

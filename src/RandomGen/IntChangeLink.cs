@@ -8,12 +8,12 @@ namespace RandomGen
 {
     class IntChangeLink : IIntChange
     {
-        private readonly RandomLink _random;
+        private readonly GenLink _gen;
         private readonly int _amount;
 
-        internal IntChangeLink(RandomLink random, int amount)
+        internal IntChangeLink(GenLink gen, int amount)
         {
-            this._random = random;
+            this._gen = gen;
             this._amount = amount;
         }
 
@@ -22,7 +22,7 @@ namespace RandomGen
             if (value <= 0)
                 throw new ArgumentOutOfRangeException("value", value, "value must be greater than 0");
 
-            return new IntChangeByLink(_random, _amount, value);
+            return new IntChangeByLink(_gen, _amount, value);
         }
     }
 }

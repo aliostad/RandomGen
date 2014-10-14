@@ -8,11 +8,11 @@ namespace RandomGen
 {
     class NumbersLink : INumbers
     {
-        private readonly RandomLink _randomLink;
+        private readonly GenLink _genLink;
 
-        internal NumbersLink(RandomLink randomLink)
+        internal NumbersLink(GenLink randomLink)
         {
-            this._randomLink = randomLink;
+            this._genLink = randomLink;
         }
 
         public Func<int> Integers(int min = 0, int max = 100)
@@ -20,7 +20,7 @@ namespace RandomGen
             if (min >= max)
                 throw new ArgumentOutOfRangeException("min >= max");
 
-            var random = Gen.CreateRandom();
+            var random = this._genLink.CreateRandom();
             
             return () => random.Next(min, max);
         }
@@ -41,7 +41,7 @@ namespace RandomGen
 
         public IDouble Doubles()
         {
-            return new DoublesLink(_randomLink);
+            return new DoublesLink(_genLink);
         }
 
         public Func<double> Doubles(double min = 0, double max = 1)
@@ -50,7 +50,7 @@ namespace RandomGen
                 throw new ArgumentOutOfRangeException("min >= max");
 
             var range = max - min;
-            var random = Gen.CreateRandom();
+            var random = this._genLink.CreateRandom();
 
             return () => min + (range * random.NextDouble());
         }
@@ -61,7 +61,7 @@ namespace RandomGen
                 throw new ArgumentOutOfRangeException("min >= max");
 
             var range = max - min;
-            var random = Gen.CreateRandom();
+            var random = this._genLink.CreateRandom();
 
             return () => min + (range * (decimal)random.NextDouble());
         }

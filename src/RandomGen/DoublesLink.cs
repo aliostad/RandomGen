@@ -8,17 +8,19 @@ namespace RandomGen
 {
     class DoublesLink : IDouble
     {
-        private readonly RandomLink _randomLink;
+        private readonly GenLink _gen;
 
-        internal DoublesLink(RandomLink randomLink)
+        internal DoublesLink(GenLink gen)
         {
-            this._randomLink = randomLink;
+            this._gen = gen;
         }
 
         public Func<double> WithNormalDistribution(double mean, double standardDeviation)
         {
-            double u1 = Gen.CreateRandom().NextDouble(); //these are uniform(0,1) random doubles
-            double u2 = Gen.CreateRandom().NextDouble();
+            //these are uniform(0,1) random doubles
+            var factory = BetweenZeroAndOne();
+            double u1 = factory();
+            double u2 = factory();
 
             double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) *
                          Math.Sin(2.0 * Math.PI * u2); //random normal(0,1)
@@ -28,7 +30,7 @@ namespace RandomGen
 
         public Func<double> BetweenZeroAndOne()
         {
-            return _randomLink.Numbers.Doubles(0, 1);
+            return _gen.Random.Numbers.Doubles(0, 1);
         }
     }
 }

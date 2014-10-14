@@ -7,27 +7,51 @@ using RandomGen.Fluent;
 
 namespace RandomGen
 {
-    class RandomLink : IRandom
+    class GenLink : IGen
     {
-        private readonly GenLink _gen;
+        private readonly int _seed;
 
-        public RandomLink(GenLink gen)
+        public GenLink(int? seed = null)
         {
-            _gen = gen;
+            this._seed = seed ?? Gen.CreateRandomSeed();
         }
 
-        public INumbers Numbers { get { return new NumbersLink(_gen); } }
-        public INames Names { get { return new NamesLink(this); } }
-        public ITime Time { get { return new TimeLink(this); } }
-        public IText Text { get { return new TextLink(this); } }
-        public IInternet Internet { get { return new InternetLink(this); } }
+        public IRandom Random
+        {
+            get { return new RandomLink(this); }
+        }
+
+        public IDateChange Change(DateTime date)
+        {
+            return new DateChangeLink(this, date);
+        }
+
+        public IDoubleChange Change(double amount)
+        {
+            return new DoubleChangeLink(this, amount);
+        }
+
+        public IDecimalChange Change(decimal amount)
+        {
+            return new DecimalChangeLink(this, amount);
+        }
+
+        public ILongChange Change(long amount)
+        {
+            return new LongChangeLink(this, amount);
+        }
+
+        public IIntChange Change(int amount)
+        {
+            return new IntChangeLink(this, amount);
+        }
 
         public Func<T> Items<T>(IEnumerable<T> items, IEnumerable<double> weights = null)
         {
             var copy = items.ToList();
             if (weights == null)
             {
-                var factory = this.Numbers.Integers(0, copy.Count);
+                var factory = this.Random.Numbers.Integers(0, copy.Count);
                 return () => copy[factory()];
             }
             else
@@ -42,7 +66,7 @@ namespace RandomGen
                     .ToList()
                     .ForEach(i => cumSum[i] = cumSum[i - 1] + weightsCopy[i]);
 
-                var factory = this.Numbers.Doubles(0, cumSum.Last());
+                var factory = this.Random.Numbers.Doubles(0, cumSum.Last());
                 return () =>
                 {
                     var r = factory();
@@ -63,6 +87,11 @@ namespace RandomGen
                 .Distinct();
 
             return this.Items(data);
+        }
+
+        internal Random CreateRandom()
+        {
+            return new Random(_seed);
         }
     }
 }

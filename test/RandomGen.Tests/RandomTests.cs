@@ -23,6 +23,25 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void DateWithSeed()
+        {
+            var seed = 42;
+            var min = DateTime.Now.AddYears(-10);
+            var max = DateTime.Now;
+            var randomDates1 = Gen.WithSeed(seed).Random.Time.Dates(min, max);
+            var randomDates2 = Gen.WithSeed(seed).Random.Time.Dates(min, max);
+
+            for (int i = 0; i < 100; i++)
+            {
+                var date1 = randomDates1();
+                var date2 = randomDates2();
+
+                Console.WriteLine("{0} - {1}", date1, date2);
+                Assert.Equal(randomDates1(), randomDates2());
+            }
+        }
+
+        [Fact]
         public void RandomFemaleNameGeneratesNotEmpty()
         {
             var names = Gen.Random.Names.Female();
@@ -67,6 +86,23 @@ namespace RandomGen.Tests
                 var name = names();
                 Assert.NotEmpty(name);
                 Console.WriteLine(name);
+            }
+        }
+
+        [Fact]
+        public void RandomSurnameWithSeed()
+        {
+            var seed = 42;
+            var names1 = Gen.WithSeed(seed).Random.Names.Surname();
+            var names2 = Gen.WithSeed(seed).Random.Names.Surname();
+
+            for (int i = 0; i < 100; i++)
+            {
+                var name1 = names1();
+                var name2 = names2();
+                Console.WriteLine("{0} - {1}", name1, name2);
+                
+                Assert.Equal(name1, name2);
             }
         }
 
@@ -196,6 +232,25 @@ namespace RandomGen.Tests
                 Assert.True(l >= min);
                 Assert.True(l < max);
                 Console.WriteLine(l);
+            }
+        }
+
+        [Fact]
+        public void RandomLongsWithSeed()
+        {
+            long min = 100L;
+            long max = 345345;
+            var seed = 42;
+            var longs1 = Gen.WithSeed(seed).Random.Numbers.Longs(min, max);
+            var longs2 = Gen.WithSeed(seed).Random.Numbers.Longs(min, max);
+
+            for (int i = 0; i < 100; i++)
+            {
+                var long1 = longs1();
+                var long2 = longs2();
+                Console.WriteLine("{0} - {1}", long1, long2);
+
+                Assert.Equal(long1, long2);
             }
         }
 

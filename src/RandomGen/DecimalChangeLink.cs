@@ -8,12 +8,12 @@ namespace RandomGen
 {
     class DecimalChangeLink : IDecimalChange
     {
-        private readonly RandomLink _random;
+        private readonly GenLink _gen;
         private readonly decimal _amount;
 
-        internal DecimalChangeLink(RandomLink random, decimal amount)
+        internal DecimalChangeLink(GenLink gen, decimal amount)
         {
-            this._random = random;
+            this._gen = gen;
             this._amount = amount;
         }
 
@@ -22,7 +22,7 @@ namespace RandomGen
             if (value <= 0)
                 throw new ArgumentOutOfRangeException("value", value, "value must be greater than 0");
 
-            return new DecimalChangeByLink(_random, _amount, value);
+            return new DecimalChangeByLink(_gen, _amount, value);
         }
     }
 }

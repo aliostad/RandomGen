@@ -8,12 +8,12 @@ namespace RandomGen
 {
     class LongChangeLink : ILongChange
     {
-        private readonly RandomLink _random;
+        private readonly GenLink _gen;
         private readonly long _amount;
 
-        internal LongChangeLink(RandomLink random, long amount)
+        internal LongChangeLink(GenLink gen, long amount)
         {
-            this._random = random;
+            this._gen = gen;
             this._amount = amount;
         }
 
@@ -22,7 +22,7 @@ namespace RandomGen
             if (value <= 0)
                 throw new ArgumentOutOfRangeException("value", value, "value must be greater than 0");
 
-            return new LongChangeByLink(_random, _amount, value);
+            return new LongChangeByLink(_gen, _amount, value);
         }
     }
 }

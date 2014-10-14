@@ -19,7 +19,24 @@ namespace RandomGen.Tests
                 var result = Gen.Change(amount).By(by).Percent();
 
                 Console.WriteLine("{0} ±{1}% -> {2}", amount, by, result);
-                Assert.InRange(result, amount - (amount * by / 100.0), amount + (amount * by / 100.0));
+                Assert.InRange(result, amount - Math.Round((amount * by / 100.0)), Math.Round(amount + (amount * by / 100.0)));
+            }
+        }
+
+        [Fact]
+        public void BePercentWithSeed()
+        {
+            var amount = 42;
+            var seeds = Gen.Random.Numbers.Integers();
+
+            foreach (var by in Gen.Random.Numbers.Integers(1, 1000).ToEnumerable().Take(100))
+            {
+                var seed = seeds();
+                var result1 = Gen.WithSeed(seed).Change(amount).By(by).Percent();
+                var result2 = Gen.WithSeed(seed).Change(amount).By(by).Percent();
+
+                Console.WriteLine("{0} - {1}", result1, result2);
+                Assert.Equal(result1, result2);
             }
         }
 

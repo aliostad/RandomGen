@@ -12,31 +12,36 @@ namespace RandomGen
 {
     public static class Gen
     {
-        public static IRandom Random { get { return new RandomLink(); } }
+        public static IRandom Random { get { return new RandomLink(new GenLink()); } }
 
         public static IDateChange Change(DateTime date)
         {
-            return new DateChangeLink(new RandomLink(), date);
+            return new DateChangeLink(new GenLink(), date);
         }
 
         public static IDoubleChange Change(double amount)
         {
-            return new DoubleChangeLink(new RandomLink(), amount);
+            return new DoubleChangeLink(new GenLink(), amount);
         }
 
         public static IDecimalChange Change(decimal amount)
         {
-            return new DecimalChangeLink(new RandomLink(), amount);
+            return new DecimalChangeLink(new GenLink(), amount);
         }
 
         public static ILongChange Change(long amount)
         {
-            return new LongChangeLink(new RandomLink(), amount);
+            return new LongChangeLink(new GenLink(), amount);
         }
 
         public static IIntChange Change(int amount)
         {
-            return new IntChangeLink(new RandomLink(), amount);
+            return new IntChangeLink(new GenLink(), amount);
+        }
+
+        public static IGen WithSeed(int seed)
+        {
+            return new GenLink(seed);
         }
 
         internal static string[] GetResourceStrings(string fileName)
@@ -55,9 +60,9 @@ namespace RandomGen
             }
         }
 
-        internal static Random CreateRandom()
+        internal static int CreateRandomSeed()
         {
-            return new Random(BitConverter.ToInt32(Guid.NewGuid().ToByteArray(), 10));
+            return BitConverter.ToInt32(Guid.NewGuid().ToByteArray(), 10);
         }
     }
 }

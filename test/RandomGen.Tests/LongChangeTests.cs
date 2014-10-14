@@ -24,6 +24,23 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void BePercentWithSeed()
+        {
+            var amount = 42L;
+            var seeds = Gen.Random.Numbers.Integers();
+
+            foreach (var by in Gen.Random.Numbers.Longs(1, 1000).ToEnumerable().Take(100))
+            {
+                var seed = seeds();
+                var result1 = Gen.WithSeed(seed).Change(amount).By(by).Percent();
+                var result2 = Gen.WithSeed(seed).Change(amount).By(by).Percent();
+
+                Console.WriteLine("{0} - {1}", result1, result2);
+                Assert.Equal(result1, result2);
+            }
+        }
+
+        [Fact]
         public void ByAmount()
         {
             var amount = 42L;

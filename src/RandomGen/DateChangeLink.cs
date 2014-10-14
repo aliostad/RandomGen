@@ -8,12 +8,12 @@ namespace RandomGen
 {
     class DateChangeLink : IDateChange
     {
-        private readonly RandomLink _random;
+        private readonly GenLink _gen;
         private readonly DateTime _date;
 
-        internal DateChangeLink(RandomLink random, DateTime date)
+        internal DateChangeLink(GenLink gen, DateTime date)
         {
-            this._random = random;
+            this._gen = gen;
             this._date = date;
         }
 
@@ -22,12 +22,12 @@ namespace RandomGen
             if (value <= 0)
                 throw new ArgumentOutOfRangeException("value", value, "value must be greater than 0");
 
-            return new DateChangeByLink(_random, _date, value);
+            return new DateChangeByLink(_gen, _date, value);
         }
 
         public DateTime By(TimeSpan value)
         {
-            var offset = _random.Numbers.Longs(value.Ticks * -1, value.Ticks)();
+            var offset = _gen.Random.Numbers.Longs(value.Ticks * -1, value.Ticks)();
 
             return _date.Add(TimeSpan.FromTicks(offset));       
         }

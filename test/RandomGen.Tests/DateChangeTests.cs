@@ -24,6 +24,32 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void ByDaysWithSeed()
+        {
+            var date = DateTime.Now;
+            var seeds = Gen.Random.Numbers.Integers();
+
+            foreach (var by in Gen.Random.Numbers.Integers(min: 1).ToEnumerable().Take(100))
+            {
+                var seed = seeds();
+
+                var result1 = Gen.WithSeed(seed).Change(date).By(by).Days();
+                var result2 = Gen.WithSeed(seed).Change(date).By(by).Days();
+
+                Console.WriteLine("{0} - {1}", result1, result2);
+                Assert.Equal(result1, result2);
+            }
+
+            foreach (var by in Gen.Random.Numbers.Integers(min: 1).ToEnumerable().Take(100))
+            {
+                var result = Gen.Change(date).By(by).Days();
+
+                Console.WriteLine("{0} ±{1} -> {2}", date, by, result);
+                Assert.InRange(result, date.AddDays(by * -1), date.AddDays(by));
+            }
+        }
+
+        [Fact]
         public void ByHoursIsInRange()
         {
             var date = DateTime.Now;

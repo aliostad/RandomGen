@@ -8,20 +8,20 @@ namespace RandomGen
 {
     class IntChangeByLink : IIntChangeBy
     {
-        private readonly RandomLink _random;
+        private readonly GenLink _gen;
         private readonly int _amount;
         private readonly int _value;
 
-        internal IntChangeByLink(RandomLink random, int amount, int value)
+        internal IntChangeByLink(GenLink gen, int amount, int value)
         {
-            this._random = random;
+            this._gen = gen;
             this._amount = amount;
             this._value = value;
         }
 
         public int Percent()
         {
-            var offset = _random.Numbers.Integers(_value * -1, _value)();
+            var offset = _gen.Random.Numbers.Integers(_value * -1, _value)();
 
             return (int)Math.Round(this._amount + (this._amount * offset / 100.0));
             
@@ -29,7 +29,7 @@ namespace RandomGen
 
         public int Amount()
         {
-            var offset = _random.Numbers.Integers(_value * -1, _value)();
+            var offset = _gen.Random.Numbers.Integers(_value * -1, _value)();
 
             return this._amount + offset;
         }
