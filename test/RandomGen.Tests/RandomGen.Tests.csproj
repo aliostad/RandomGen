@@ -47,6 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateTimeOffsetChangeTests.cs" />
     <Compile Include="DecimalChangeTests.cs" />
     <Compile Include="IntChangeTests.cs" />
     <Compile Include="LongChangeTests.cs" />

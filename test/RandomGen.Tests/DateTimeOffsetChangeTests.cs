@@ -7,12 +7,12 @@ using Xunit;
 
 namespace RandomGen.Tests
 {
-    public class DateChangeTests
+    public class DateTimeOffsetChangeTests
     {
         [Fact]
         public void ByDaysIsInRange()
         {
-            var date = DateTime.Now;
+            var date = DateTimeOffset.Now;
 
             foreach (var by in Gen.Random.Numbers.Integers(min: 1).ToEnumerable().Take(100))
             {
@@ -26,7 +26,7 @@ namespace RandomGen.Tests
         [Fact]
         public void ByDaysWithSeed()
         {
-            var date = DateTime.Now;
+            var date = DateTimeOffset.Now;
             var seeds = Gen.Random.Numbers.Integers();
 
             foreach (var by in Gen.Random.Numbers.Integers(min: 1).ToEnumerable().Take(100))
@@ -44,7 +44,7 @@ namespace RandomGen.Tests
         [Fact]
         public void ByHoursIsInRange()
         {
-            var date = DateTime.Now;
+            var date = DateTimeOffset.Now;
 
             foreach (var by in Gen.Random.Numbers.Integers(min: 1).ToEnumerable().Take(100))
             {
@@ -58,7 +58,7 @@ namespace RandomGen.Tests
         [Fact]
         public void ByMinutesIsInRange()
         {
-            var date = DateTime.Now;
+            var date = DateTimeOffset.Now;
 
             foreach (var by in Gen.Random.Numbers.Integers(min: 1).ToEnumerable().Take(100))
             {
@@ -72,7 +72,7 @@ namespace RandomGen.Tests
         [Fact]
         public void ByMonthsIsInRange()
         {
-            var date = DateTime.Now;
+            var date = DateTimeOffset.Now;
 
             foreach (var by in Gen.Random.Numbers.Integers(min: 1).ToEnumerable().Take(100))
             {
@@ -86,7 +86,7 @@ namespace RandomGen.Tests
         [Fact]
         public void ByTimeSpanIsInRange()
         {
-            var date = DateTime.Now;
+            var date = DateTimeOffset.Now;
 
             foreach (var by in Gen.Random.Numbers.Integers(min: 1).ToEnumerable().Take(100))
             {

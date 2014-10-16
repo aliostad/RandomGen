@@ -26,6 +26,11 @@ namespace RandomGen
             return new DateChangeLink(this, date);
         }
 
+        public IDateTimeOffsetChange Change(DateTimeOffset date)
+        {
+            return new DateTimeOffsetChangeLink(this, date);
+        }
+
         public IDoubleChange Change(double amount)
         {
             return new DoubleChangeLink(this, amount);

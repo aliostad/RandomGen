@@ -42,6 +42,19 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void DateTimeOffsetIsBetweenRange()
+        {
+            var min = DateTimeOffset.Now.AddYears(-10);
+            var max = DateTimeOffset.Now;
+            var randomDates = Gen.Random.Time.Dates(min, max);
+
+            for (int i = 0; i < 100; i++)
+            {
+                Assert.InRange(randomDates(), min, max);
+            }
+        }
+
+        [Fact]
         public void RandomFemaleNameGeneratesNotEmpty()
         {
             var names = Gen.Random.Names.Female();

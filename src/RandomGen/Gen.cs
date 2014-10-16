@@ -19,6 +19,11 @@ namespace RandomGen
             return new DateChangeLink(new GenLink(), date);
         }
 
+        public static IDateTimeOffsetChange Change(DateTimeOffset date)
+        {
+            return new DateTimeOffsetChangeLink(new GenLink(), date);
+        }
+
         public static IDoubleChange Change(double amount)
         {
             return new DoubleChangeLink(new GenLink(), amount);

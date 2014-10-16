@@ -40,7 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateTimeOffsetChangeByLink.cs" />
+    <Compile Include="DateTimeOffsetChangeLink.cs" />
     <Compile Include="DecimalChangeByLink.cs" />
+    <Compile Include="Fluent\IDateTimeOffsetChange.cs" />
+    <Compile Include="Fluent\IDateTimeOffsetChangeBy.cs" />
     <Compile Include="Fluent\IGen.cs" />
     <Compile Include="Fluent\IIntChange.cs" />
     <Compile Include="Fluent\IIntChangeBy.cs" />

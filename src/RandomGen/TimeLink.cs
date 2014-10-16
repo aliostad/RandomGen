@@ -29,8 +29,28 @@ namespace RandomGen
                 throw new ArgumentOutOfRangeException("min >= max");
 
             var ticksSpan = maxDate.Ticks - minDate.Ticks;
+            var factory = _random.Numbers.Doubles().BetweenZeroAndOne();
 
-            return () => new DateTime(Convert.ToInt64(minDate.Ticks + ((double)ticksSpan * _random.Numbers.Doubles().BetweenZeroAndOne()())));
+            return () => new DateTime(Convert.ToInt64(minDate.Ticks + ((double)ticksSpan * factory())));
+        }
+
+        /// <summary>
+        /// Returns random datetimeoffset gen
+        /// </summary>
+        /// <param name="min">if not supplied, DateTimeOffset.MinValue is used</param>
+        /// <param name="max">if not supplied, DateTimeOffset.MaxValue is used</param>
+        public Func<DateTimeOffset> Dates(DateTimeOffset? min = null, DateTimeOffset? max = null)
+        {
+            var minDate = min.GetValueOrDefault(DateTimeOffset.MinValue);
+            var maxDate = max.GetValueOrDefault(DateTimeOffset.MaxValue);
+
+            if (minDate >= maxDate)
+                throw new ArgumentOutOfRangeException("min >= max");
+
+            var ticksSpan = maxDate.Ticks - minDate.Ticks;
+            var factory = _random.Numbers.Doubles().BetweenZeroAndOne();
+
+            return () => new DateTimeOffset(Convert.ToInt64(minDate.Ticks + ((double)ticksSpan * factory())), minDate.Offset);
         }
 
         /// <summary>
@@ -45,9 +65,9 @@ namespace RandomGen
 
             var minSpan = min ?? TimeSpan.Zero;
             var maxSpan = max ?? TimeSpan.FromDays(365);
+            var factory = _random.Numbers.Longs(minSpan.Ticks, maxSpan.Ticks);
 
-            return () => new TimeSpan(_random.Numbers.Longs(minSpan.Ticks, maxSpan.Ticks)());
-
+            return () => new TimeSpan(factory());
         }
     }
 }

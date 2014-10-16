@@ -31,7 +31,7 @@ Console.WriteLine(doubles()); // between 10D and 15D
 var booleans = Gen.Random.Numbers.Booleans();
 Console.WriteLine(booleans()); // true or false
 
-// dates
+// dates - DateTime and DateTimeOffset
 var dates = Gen.Random.Time.Dates(DateTime.Now.AddYears(-1), DateTime.Now);
 Console.WriteLine(date());
 
@@ -116,7 +116,7 @@ var date = DateTime.Now;
 var newDate = Gen.Change(date).By(10).Days(); //.Minutes(), .Hours(), .Months()
 Console.WriteLine(newDate); 
 
-var date = DateTime.Now;
+var date = DateTimeOffset.Now;
 var newDate = Gen.Change(date).By(TimeSpan.FromSeconds(10));
 Console.WriteLine(newDate); 
 
