@@ -9,11 +9,11 @@ namespace RandomGen
 {
     class GenLink : IGen
     {
-        private readonly int _seed;
+        private readonly Random _random;
 
         public GenLink(int? seed = null)
         {
-            this._seed = seed ?? Gen.CreateRandomSeed();
+            this._random = seed == null ? new Random() : new Random(seed.Value);
         }
 
         public IRandom Random
@@ -94,9 +94,9 @@ namespace RandomGen
             return this.Items(data);
         }
 
-        internal Random CreateRandom()
+        internal Random GetRandom()
         {
-            return new Random(_seed);
+            return _random;
         }
     }
 }

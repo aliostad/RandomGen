@@ -20,7 +20,7 @@ namespace RandomGen
             if (min >= max)
                 throw new ArgumentOutOfRangeException("min >= max");
 
-            var random = this._genLink.CreateRandom();
+            var random = this._genLink.GetRandom();
             
             return () => random.Next(min, max);
         }
@@ -50,7 +50,7 @@ namespace RandomGen
                 throw new ArgumentOutOfRangeException("min >= max");
 
             var range = max - min;
-            var random = this._genLink.CreateRandom();
+            var random = this._genLink.GetRandom();
 
             return () => min + (range * random.NextDouble());
         }
@@ -61,7 +61,7 @@ namespace RandomGen
                 throw new ArgumentOutOfRangeException("min >= max");
 
             var range = max - min;
-            var random = this._genLink.CreateRandom();
+            var random = this._genLink.GetRandom();
 
             return () => min + (range * (decimal)random.NextDouble());
         }
