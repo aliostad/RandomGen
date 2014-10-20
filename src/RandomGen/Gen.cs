@@ -64,10 +64,6 @@ namespace RandomGen
                 return list.ToArray();
             }
         }
-
-        internal static int CreateRandomSeed()
-        {
-            return BitConverter.ToInt32(Guid.NewGuid().ToByteArray(), 10);
-        }
+         
     }
 }

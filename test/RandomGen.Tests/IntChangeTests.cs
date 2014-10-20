@@ -53,5 +53,19 @@ namespace RandomGen.Tests
                 Assert.InRange(result, amount - by, amount + by);
             }
         }
+
+        [Fact]
+        public void ShouldBePossibleToGenerateAValueOtherThanZero()
+        {
+            var integers = Gen.Random.Numbers.Integers(max: 1);
+
+            //Given I have generated a load of ints between zero and one
+            const int numberOfRuns = 10000;
+            var names = Enumerable.Range(1, numberOfRuns)
+                .Select(i => integers()).ToArray();
+            
+            //Then at least some should be non zero
+            var zeros = names.Count(n => n == 0) != numberOfRuns;
+        }
     }
 }
