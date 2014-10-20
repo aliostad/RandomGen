@@ -37,7 +37,7 @@ namespace RandomGen
         public Func<string> First()
         {
             var sources = new[] { this.Male(), this.Female() };
-            var factory = _random.Numbers.Integers(max: 1);
+            var factory = _random.Numbers.Integers(max: sources.Length);
 
             return () => sources[factory()]();
         }
