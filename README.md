@@ -12,6 +12,7 @@ PM> Install-Package RandomGen
 ```
 
 Use Gen.Random.xxx fluent methods to get a delegate that creates random values every time you call it.
+RandomGen follows System.Random convention of excluding max value from results, ie. Gen.Random.Numbers.Integers(min: 1, max: 5) will return values { 1, 2, 3, 4 }.
 
 #### Simple types
 
