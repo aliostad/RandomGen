@@ -52,8 +52,8 @@ namespace RandomGen
 
         public Func<string> Full()
         {
-            var firstNamesFactory = Gen.Random.Names.First();
-            var surnameFactory = Gen.Random.Names.Surname();
+            var firstNamesFactory = _random.Names.First();
+            var surnameFactory = _random.Names.Surname();
 
             return () => string.Concat(firstNamesFactory(), " ", surnameFactory());
         }

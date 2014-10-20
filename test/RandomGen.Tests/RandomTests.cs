@@ -133,6 +133,23 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void RandomFullnameWithSeed()
+        {
+            var seed = 42;
+            var names1 = Gen.WithSeed(seed).Random.Names.Full();
+            var names2 = Gen.WithSeed(seed).Random.Names.Full();
+
+            for (int i = 0; i < 100; i++)
+            {
+                var name1 = names1();
+                var name2 = names2();
+                Console.WriteLine("{0} - {1}", name1, name2);
+
+                Assert.Equal(name1, name2);
+            }
+        }
+
+        [Fact]
         public void RandomWordsGeneratesNotEmpty()
         {
             var words = Gen.Random.Text.Words();
