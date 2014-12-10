@@ -9,6 +9,14 @@ namespace RandomGen.Tests
 {
     public class RandomTests
     {
+
+        [Fact]
+        public void NormalDistributionShouldNotAlwaysReturnTheSameValue()
+        {
+            var normalDistribution = Gen.Random.Numbers.Doubles().WithNormalDistribution(1,1);
+            Assert.NotEqual(normalDistribution(), normalDistribution());
+        }
+
         [Fact]
         public void DateIsBetweenRange()
         {
