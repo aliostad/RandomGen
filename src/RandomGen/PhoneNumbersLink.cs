@@ -12,7 +12,7 @@ namespace RandomGen
         internal PhoneNumbersLink(RandomLink random)
         {
             this._random = random;
-            this._generate = this._random.Numbers.Integers(0, 9);
+            this._generate = this._random.Numbers.Integers(0, 10);
         }
 
         string MaskToString(string mask)
