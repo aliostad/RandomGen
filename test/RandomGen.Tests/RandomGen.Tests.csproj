@@ -52,6 +52,7 @@
     <Compile Include="IntChangeTests.cs" />
     <Compile Include="LongChangeTests.cs" />
     <Compile Include="DoubleChangeTests.cs" />
+    <Compile Include="PhoneNumberTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DateChangeTests.cs" />
     <Compile Include="RandomTests.cs" />

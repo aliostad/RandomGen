@@ -48,6 +48,7 @@
     <Compile Include="Fluent\IGen.cs" />
     <Compile Include="Fluent\IIntChange.cs" />
     <Compile Include="Fluent\IIntChangeBy.cs" />
+    <Compile Include="Fluent\IPhoneNumbers.cs" />
     <Compile Include="IntChangeByLink.cs" />
     <Compile Include="LongChangeByLink.cs" />
     <Compile Include="DoubleChangeByLink.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="InternetLink.cs" />
     <Compile Include="DateChangeLink.cs" />
     <Compile Include="GenLink.cs" />
+    <Compile Include="PhoneNumbersLink.cs" />
     <Compile Include="TimeLink.cs" />
     <Compile Include="NumbersLink.cs" />
     <Compile Include="TextLink.cs" />

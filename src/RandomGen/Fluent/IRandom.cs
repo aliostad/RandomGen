@@ -12,6 +12,7 @@ namespace RandomGen.Fluent
         ITime Time { get; }
         IText Text { get; }
         IInternet Internet { get; }
+        IPhoneNumbers PhoneNumbers { get; }
 
         /// <summary>
         /// Returns a gen that chooses randomly from a list

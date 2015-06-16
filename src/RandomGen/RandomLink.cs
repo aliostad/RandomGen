@@ -21,6 +21,7 @@ namespace RandomGen
         public ITime Time { get { return new TimeLink(this); } }
         public IText Text { get { return new TextLink(this); } }
         public IInternet Internet { get { return new InternetLink(this); } }
+        public IPhoneNumbers PhoneNumbers { get { return new PhoneNumbersLink(this); } }
 
         public Func<T> Items<T>(IEnumerable<T> items, IEnumerable<double> weights = null)
         {
