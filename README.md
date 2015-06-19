@@ -89,6 +89,17 @@ Console.WriteLine(addresses());
 var urls = Gen.Random.Internet.Urls();
 Console.WriteLine(urls());
 
+// phone numbers using an input mask
+var mobileNumbers = Gen.Random.PhoneNumbers.FromMask("+44 (0) 1xxx xxxxxx");
+Console.WriteLine(mobileNumbers());
+
+// phone numbers using a pre-defined format
+var customFormats = Gen.Random.PhoneNumbers.WithFormat(NumberFormat.UKMobile);
+Console.WriteLine(customFormats());
+
+// phone numbers using a randomly selected pre-defined format
+var randomFormats = Gen.Random.PhoneNumbers.WithRandomFormat();
+Console.WriteLine(randomFormats());
 ```
 
 #### Your custom objects
