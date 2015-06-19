@@ -2,7 +2,6 @@
 
 namespace RandomGen.Fluent
 {
-
     public enum NumberFormat
     {
         UKMobile,

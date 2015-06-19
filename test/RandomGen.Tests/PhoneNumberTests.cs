@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using RandomGen.Fluent;
 using Xunit;
+using Xunit.Extensions;
 
 namespace RandomGen.Tests
 {
     public class PhoneNumberTests
     {
-
         [Fact]
         public void PhoneNumberFromSimpleMask()
         {
@@ -21,31 +21,49 @@ namespace RandomGen.Tests
         [Fact]
         public void PhoneNumberFromMask()
         {
-            var number = Gen.Random.PhoneNumbers.FromMask("+44 (0) 1xxx xxxxxx")();
-            Assert.True(number.StartsWith("+44 (0) 1"));
-            Assert.False(number.Contains('x'));
-            Assert.Equal(19, number.Length);
+            var randomNumbers = Gen.Random.PhoneNumbers.FromMask("+44 (0) 1xxx xxxxxx");
+
+            for (int i = 0; i < 100; i++)
+            {
+                var number = randomNumbers();
+
+                Console.WriteLine(number);
+                Assert.True(number.StartsWith("+44 (0) 1"));
+                Assert.False(number.Contains('x'));
+                Assert.Equal(19, number.Length);
+            }
         }
 
-        [Fact]
-        public void PhoneNumberFromFormat()
+        [Theory]
+        [InlineData(NumberFormat.UKLandLine, 12, "01")]
+        [InlineData(NumberFormat.UKMobile, 12, "07")]
+        public void PhoneNumberFromFormat(NumberFormat format, int length, string startsWith)
         {
-            var mobileNumber = Gen.Random.PhoneNumbers.WithFormat(NumberFormat.UKMobile)();
-            Assert.Equal(12, mobileNumber.Length);
-            Assert.True(mobileNumber.StartsWith("07"));
+            var randomNumbers = Gen.Random.PhoneNumbers.WithFormat(format);
 
-            var landlineNumber = Gen.Random.PhoneNumbers.WithFormat(NumberFormat.UKLandLine)();
-            Assert.Equal(12, landlineNumber.Length);
-            Assert.True(landlineNumber.StartsWith("01"));
+            for (int i = 0; i < 100; i++)
+            {
+                var number = randomNumbers();
+
+                Console.WriteLine(number);
+                Assert.Equal(length, number.Length);
+                Assert.True(number.StartsWith(startsWith));
+            }
         }
 
         [Fact]
         public void PhoneNumberRandom()
         {
-            var mobileNumber = Gen.Random.PhoneNumbers.WithRandomFormat()();
-            Assert.Equal(12, mobileNumber.Length);
-            Assert.True(mobileNumber.StartsWith("07") || mobileNumber.StartsWith("01"));
-        }
+            var randomNumbers = Gen.Random.PhoneNumbers.WithRandomFormat();
 
+            for (int i = 0; i < 100; i++)
+            {
+                var number = randomNumbers();
+
+                Console.WriteLine(number);
+                Assert.Equal(12, number.Length);
+                Assert.True(number.StartsWith("07") || number.StartsWith("01"));
+            }
+        }
     }
 }

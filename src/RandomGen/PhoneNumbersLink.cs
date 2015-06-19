@@ -39,10 +39,15 @@ namespace RandomGen
         {
             switch (format)
             {
-                case NumberFormat.UKLandLine: return "01xxx xxxxxx";
-                case NumberFormat.UKMobile: return "07xxx xxxxxx";
-            }
-            throw new NotSupportedException("format not supported");
+                case NumberFormat.UKLandLine:
+                    return "01xxx xxxxxx";
+
+                case NumberFormat.UKMobile:
+                    return "07xxx xxxxxx";
+
+                default:
+                    throw new NotSupportedException(string.Format("Format {0} is not supported.", format));
+            }            
         }
 
         public Func<string> FromMask(string mask)
@@ -57,9 +62,9 @@ namespace RandomGen
 
         public Func<string> WithRandomFormat()
         {
-            // work out the number of items in the enum, and select a random member 
-            // (assuming the values in the enum are simple consecutive numbers)
-            return WithFormat((NumberFormat)this._random.Numbers.Integers(0, (int)Enum.GetValues(typeof(NumberFormat)).Length -1)());
+            var randomFormats = this._random.Items((NumberFormat[])Enum.GetValues(typeof(NumberFormat)));
+
+            return () => WithFormat(randomFormats())();
         }
     }
 }
