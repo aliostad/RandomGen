@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using RandomGen.Fluent;
+using System.Web.Script.Serialization;
 
 namespace RandomGen
 {
@@ -61,6 +62,20 @@ namespace RandomGen
                     if (!string.IsNullOrEmpty(line))
                         list.Add(line);
                 }
+                return list.ToArray();
+            }
+        }
+
+        internal static string[] GetResourceJson(string fileName)
+        {
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("RandomGen.Data." + fileName))
+            using (var reader = new StreamReader(stream))
+            {
+                var content = reader.ReadToEnd();
+
+                var js = new JavaScriptSerializer();
+                List<string> list = js.Deserialize<List<string>>(content);
+
                 return list.ToArray();
             }
         }

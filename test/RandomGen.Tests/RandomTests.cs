@@ -183,6 +183,18 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void RandomNaughtyTextsGeneratesNotEmpty()
+        {
+            var texts = Gen.Random.Text.Naughty();
+            for (int i = 0; i < 100; i++)
+            {
+                var text = texts();
+                Assert.NotEmpty(text);
+                Console.WriteLine(text);
+            }
+        }
+
+        [Fact]
         public void RandomCountriesGeneratesNotEmpty()
         {
             var texts = Gen.Random.Countries();

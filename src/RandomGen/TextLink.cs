@@ -9,6 +9,7 @@ namespace RandomGen
     class TextLink : IText
     {
         private static Lazy<string[]> _words = new Lazy<string[]>(GetWords);
+        private static Lazy<string[]> _naughtyWords = new Lazy<string[]>(GetNaughtyWords);
         private readonly RandomLink _random;
 
         internal TextLink(RandomLink random)
@@ -57,9 +58,22 @@ namespace RandomGen
             };
         }
 
+        public Func<string> Naughty()
+        {
+            var length = _naughtyWords.Value.Length;
+            var factory = _random.Numbers.Integers(0, length);
+
+            return () => _naughtyWords.Value[factory()];
+        }
+
         private static string[] GetWords()
         {
             return Gen.GetResourceStrings("dictionary.txt");
+        }
+
+        private static string[] GetNaughtyWords()
+        {
+            return Gen.GetResourceJson("blns.json");
         }
     }
 }

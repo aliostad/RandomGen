@@ -16,5 +16,11 @@ namespace RandomGen.Fluent
         Func<string> Long();
         Func<string> VeryLong();
         Func<string> Length(int length);
+
+        /// <summary>
+        /// Based on the Big List of Naughty Strings taken from
+        /// https://github.com/minimaxir/big-list-of-naughty-strings
+        /// </summary>
+        Func<string> Naughty();
     }
 }
