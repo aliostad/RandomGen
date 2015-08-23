@@ -73,6 +73,10 @@ Console.WriteLine(words());
 var texts = Gen.Random.Text.Length(100); // .Short(), .Long(), .VeryLong()
 Console.WriteLine(texts());
 
+// naughty strings - useful for security testing
+var texts = Gen.Random.Text.Naughty();
+Console.WriteLine(texts());
+
 // countries
 var countries = Gen.Random.Countries();
 Console.WriteLine(countries());
