@@ -189,7 +189,7 @@ namespace RandomGen.Tests
             for (int i = 0; i < 100; i++)
             {
                 var text = texts();
-                Assert.NotEmpty(text);
+                Assert.NotNull(text);
                 Console.WriteLine(text);
             }
         }
