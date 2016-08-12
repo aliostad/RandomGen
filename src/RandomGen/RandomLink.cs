@@ -63,7 +63,7 @@ namespace RandomGen
             var enumType = typeof(T);
 
             if (!enumType.IsEnum)
-                throw new NotSupportedException($"{enumType.Name} is not an enum");
+                throw new NotSupportedException(enumType.Name + " is not an enum");
 
             var values = (T[])System.Enum.GetValues(enumType);
 
