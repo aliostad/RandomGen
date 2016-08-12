@@ -57,6 +57,19 @@ namespace RandomGen
             }
         }
 
+        public Func<T> Enum<T>(IEnumerable<double> weights = null)
+            where T : struct, IConvertible
+        {
+            var enumType = typeof(T);
+
+            if (!enumType.IsEnum)
+                throw new NotSupportedException($"{enumType.Name} is not an enum");
+
+            var values = (T[])System.Enum.GetValues(enumType);
+
+            return this.Items(values, weights);
+        }
+
         public Func<string> Countries()
         {
             var data = CultureInfo.GetCultures(CultureTypes.SpecificCultures)

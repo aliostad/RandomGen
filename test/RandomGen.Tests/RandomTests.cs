@@ -209,11 +209,25 @@ namespace RandomGen.Tests
         [Fact]
         public void ListLikelihoodWeightsWorks()
         {
-            var items = Gen.Random.Items(new[] {"A", "B"}, new [] { 0.1, 2.0});
+            var items = Gen.Random.Items(new[] { "A", "B" }, new[] { 0.1, 2.0 });
             for (int i = 0; i < 100; i++)
             {
                 var item = items();
                 Assert.NotEmpty(item);
+                Console.WriteLine(item);
+            }
+        }
+
+        private enum TestValues { Foo, Bar }
+
+        [Fact]
+        public void EnumLikelihoodWeightsWorks()
+        {
+            var items = Gen.Random.Enum<TestValues>(new[] { 0.1, 2.0 });
+            for (int i = 0; i < 100; i++)
+            {
+                var item = items();
+                Assert.True(Enum.IsDefined(typeof(TestValues), item));
                 Console.WriteLine(item);
             }
         }

@@ -117,10 +117,17 @@ Console.WriteLine(randomFormats());
 var items = Gen.Random.Items(new [] {"A", "B", "C"});
 Console.WriteLine(items()); 
 
-// with the likelihoods supplied
+// items with the likelihoods supplied
 var items = Gen.Random.Items(new [] {"A", "B", "C"}, new [] {0.5, 6, 1.3});
 Console.WriteLine(items()); 
 
+// enums with equal likelihood - enum EnumType { A, B, C }
+var items = Gen.Random.Enum<EnumType>();
+Console.WriteLine(items()); 
+
+// enums with the likelihoods supplied
+var items = Gen.Random.Enum<EnumType>(new [] {0.5, 6, 1.3});
+Console.WriteLine(items()); 
 
 ```
 

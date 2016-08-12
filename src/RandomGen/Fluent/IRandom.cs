@@ -23,6 +23,13 @@ namespace RandomGen.Fluent
         Func<T> Items<T>(IEnumerable<T> items, IEnumerable<double> weights = null);
 
         /// <summary>
+        /// Returns a gen that chooses randomly from an Enum values
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="weights">Optional weights affecting the likelihood of a value being chosen. Same length as Enum values</param>
+        Func<T> Enum<T>(IEnumerable<double> weights = null) where T : struct, IConvertible;
+
+        /// <summary>
         /// Generates random country names
         /// Based on System.Globalisation
         /// </summary>
