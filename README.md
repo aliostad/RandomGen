@@ -1,5 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/f5gtmgmm2mkrqg1k?svg=true)](https://ci.appveyor.com/project/aliostad/randomgen)
 
+[![NuGet](https://img.shields.io/nuget/v/Randomgen.svg?style=flat)](https://www.nuget.org/packages/RandomGen/)
 
 RandomGen
 =========
