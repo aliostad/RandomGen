@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -365,5 +367,24 @@ namespace RandomGen.Tests
 
             Assert.InRange(trueCount, 1, 99);
         }
+
+        [Fact]
+        public void IsThreadSafe()
+        {
+            var dic = new ConcurrentDictionary<int, int>();
+            var gen = Gen.Random.Numbers.Integers(1000000, 2000000);
+            Enumerable.Range(1, 1000).ToList().ForEach(x =>
+            Task.Run(() =>
+            {
+               var i = gen();
+               dic.AddOrUpdate(i, 0, (p, y) => 0);
+            }));
+
+            Thread.Sleep(1000);
+
+            Assert.True(dic.Count > 950, dic.Count.ToString());
+
+        }
+
     }
 }
