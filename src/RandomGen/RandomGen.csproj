@@ -1,113 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{244831F2-6F1B-426A-BDE1-A21BA69A2307}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RandomGen</RootNamespace>
-    <AssemblyName>RandomGen</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="DateTimeOffsetChangeByLink.cs" />
-    <Compile Include="DateTimeOffsetChangeLink.cs" />
-    <Compile Include="DecimalChangeByLink.cs" />
-    <Compile Include="Fluent\IDateTimeOffsetChange.cs" />
-    <Compile Include="Fluent\IDateTimeOffsetChangeBy.cs" />
-    <Compile Include="Fluent\IGen.cs" />
-    <Compile Include="Fluent\IIntChange.cs" />
-    <Compile Include="Fluent\IIntChangeBy.cs" />
-    <Compile Include="Fluent\IPhoneNumbers.cs" />
-    <Compile Include="IntChangeByLink.cs" />
-    <Compile Include="LongChangeByLink.cs" />
-    <Compile Include="DoubleChangeByLink.cs" />
-    <Compile Include="DateChangeByLink.cs" />
-    <Compile Include="DecimalChangeLink.cs" />
-    <Compile Include="IntChangeLink.cs" />
-    <Compile Include="LongChangeLink.cs" />
-    <Compile Include="DoubleChangeLink.cs" />
-    <Compile Include="Fluent\IDecimalChange.cs" />
-    <Compile Include="Fluent\IDecimalChangeBy.cs" />
-    <Compile Include="Fluent\ILongChangeBy.cs" />
-    <Compile Include="Fluent\ILongChange.cs" />
-    <Compile Include="Fluent\IDoubleChangeBy.cs" />
-    <Compile Include="Fluent\IDoubleChange.cs" />
-    <Compile Include="Fluent\IDateChangeBy.cs" />
-    <Compile Include="Fluent\IDateChange.cs" />
-    <Compile Include="Fluent\IInternet.cs" />
-    <Compile Include="Fluent\ITime.cs" />
-    <Compile Include="Fluent\IDouble.cs" />
-    <Compile Include="Fluent\IFluentInterface.cs" />
-    <Compile Include="Fluent\INumbers.cs" />
-    <Compile Include="Fluent\INames.cs" />
-    <Compile Include="Fluent\IRandom.cs" />
-    <Compile Include="Fluent\IText.cs" />
-    <Compile Include="DoublesLink.cs" />
-    <Compile Include="InternetLink.cs" />
-    <Compile Include="DateChangeLink.cs" />
-    <Compile Include="GenLink.cs" />
-    <Compile Include="PhoneNumbersLink.cs" />
-    <Compile Include="TimeLink.cs" />
-    <Compile Include="NumbersLink.cs" />
-    <Compile Include="TextLink.cs" />
-    <Compile Include="NamesLink.cs" />
-    <Compile Include="RandomLink.cs" />
-    <Compile Include="FuncExtensions.cs" />
-    <Compile Include="Gen.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Data\dist.tld.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Data\dictionary.txt" />
-    <EmbeddedResource Include="Data\dist.all.last.txt" />
-    <EmbeddedResource Include="Data\dist.female.first.txt" />
-    <EmbeddedResource Include="Data\dist.male.first.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Data\blns.json" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
+		<Summary>Random generation framework for .NET</Summary>
+		<AssemblyName>RandomGen</AssemblyName>
+		<PackageId>RandomGen</PackageId>
+	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Data\blns.json" />
+	  <None Remove="Data\dictionary.txt" />
+	  <None Remove="Data\dist.all.last.txt" />
+	  <None Remove="Data\dist.female.first.txt" />
+	  <None Remove="Data\dist.male.first.txt" />
+	  <None Remove="Data\dist.tld.txt" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="Data\blns.json" />
+	  <EmbeddedResource Include="Data\dictionary.txt" />
+	  <EmbeddedResource Include="Data\dist.all.last.txt" />
+	  <EmbeddedResource Include="Data\dist.female.first.txt" />
+	  <EmbeddedResource Include="Data\dist.male.first.txt" />
+	  <EmbeddedResource Include="Data\dist.tld.txt" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+	</ItemGroup>
+	
 </Project>

@@ -6,8 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using RandomGen.Fluent;
-using System.Web.Script.Serialization;
 
 namespace RandomGen
 {
@@ -72,10 +72,7 @@ namespace RandomGen
             using (var reader = new StreamReader(stream))
             {
                 var content = reader.ReadToEnd();
-
-                var js = new JavaScriptSerializer();
-                List<string> list = js.Deserialize<List<string>>(content);
-
+                List<string> list = JsonConvert.DeserializeObject<List<string>>(content);
                 return list.ToArray();
             }
         }
