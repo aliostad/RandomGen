@@ -20,7 +20,14 @@ namespace RandomGen.Fluent
         /// <typeparam name="T"></typeparam>
         /// <param name="items"></param>
         /// <param name="weights">Optional weights affecting the likelihood of an item being chosen. Same length as items</param>
-        Func<T> Items<T>(IEnumerable<T> items, IEnumerable<double> weights = null);
+        Func<T> Items<T>(IEnumerable<T> items, IEnumerable<double> weights);
+
+        /// <summary>
+        /// Returns a gen that chooses randomly with equal weight for each item.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        Func<T> Items<T>(params T[] items);
 
         /// <summary>
         /// Returns a gen that chooses randomly from an Enum values

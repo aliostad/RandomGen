@@ -209,6 +209,18 @@ namespace RandomGen.Tests
         }
 
         [Fact]
+        public void RandomItems()
+        {
+            var items = Gen.Random.Items("A", "B");
+            for (int i = 0; i < 100; i++)
+            {
+                var item = items();
+                Assert.NotEmpty(item);
+                Console.WriteLine(item);
+            }
+        }
+
+        [Fact]
         public void ListLikelihoodWeightsWorks()
         {
             var items = Gen.Random.Items(new[] { "A", "B" }, new[] { 0.1, 2.0 });
@@ -317,6 +329,108 @@ namespace RandomGen.Tests
                 Console.WriteLine("{0} - {1}", long1, long2);
 
                 Assert.Equal(long1, long2);
+            }
+        }
+
+        [Fact]
+        public void RandomInts()
+        {
+            int min = 100;
+            int max = 345345;
+            var ints = Gen.Random.Numbers.Integers(min, max);
+            for (int i = 0; i < 100; i++)
+            {
+                var integer = ints();
+                Assert.True(integer >= min);
+                Assert.True(integer < max);
+                Console.WriteLine(integer);
+            }
+        }
+
+        [Fact]
+        public void RandomIntsWithSeed()
+        {
+            int min = 100;
+            int max = 345345;
+            var seed = 42;
+            var ints1 = Gen.WithSeed(seed).Random.Numbers.Integers(min, max);
+            var ints2 = Gen.WithSeed(seed).Random.Numbers.Integers(min, max);
+
+            for (int i = 0; i < 100; i++)
+            {
+                var int1 = ints1();
+                var int2 = ints2();
+                Console.WriteLine("{0} - {1}", int1, int2);
+
+                Assert.Equal(int1, int2);
+            }
+        }
+
+        [Fact]
+        public void RandomUInts()
+        {
+            uint min = 100;
+            uint max = 345345;
+            var ints = Gen.Random.Numbers.UnsignedIntegers(min, max);
+            for (int i = 0; i < 100; i++)
+            {
+                var integer = ints();
+                Assert.True(integer >= min);
+                Assert.True(integer < max);
+                Console.WriteLine(integer);
+            }
+        }
+
+        [Fact]
+        public void RandomUIntsWithSeed()
+        {
+            uint min = 100;
+            uint max = 345345;
+            var seed = 42;
+            var ints1 = Gen.WithSeed(seed).Random.Numbers.UnsignedIntegers(min, max);
+            var ints2 = Gen.WithSeed(seed).Random.Numbers.UnsignedIntegers(min, max);
+
+            for (int i = 0; i < 100; i++)
+            {
+                var int1 = ints1();
+                var int2 = ints2();
+                Console.WriteLine("{0} - {1}", int1, int2);
+
+                Assert.Equal(int1, int2);
+            }
+        }
+
+        [Fact]
+        public void RandomBytes()
+        {
+            byte min = 10;
+            byte max = 100;
+            var bytes = Gen.Random.Numbers.Bytes(min, max);
+            for (int i = 0; i < 100; i++)
+            {
+                var b = bytes();
+                Assert.True(b >= min);
+                Assert.True(b < max);
+                Console.WriteLine(b);
+            }
+        }
+
+        [Fact]
+        public void RandomBytesWithSeed()
+        {
+            byte min = 10;
+            byte max = 100;
+            var seed = 42;
+            var bytes1 = Gen.WithSeed(seed).Random.Numbers.Bytes(min, max);
+            var bytes2 = Gen.WithSeed(seed).Random.Numbers.Bytes(min, max);
+
+            for (int i = 0; i < 100; i++)
+            {
+                var byte1 = bytes1();
+                var byte2 = bytes2();
+                Console.WriteLine("{0} - {1}", byte1, byte2);
+
+                Assert.Equal(byte1, byte2);
             }
         }
 

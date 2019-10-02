@@ -27,6 +27,9 @@ Console.WriteLine(ints()); // between 0 and 100
 var ints2 = Gen.Random.Numbers.Integers(10, 15);
 Console.WriteLine(ints2()); // between 10 and 15
 
+var uints = Gen.Random.Numbers.UnsignedIntegers();
+Console.WriteLine(uints()); // between 0 and 100
+
 // doubles
 var doubles = Gen.Random.Numbers.Doubles(10D, 15D);
 Console.WriteLine(doubles()); // between 10D and 15D
@@ -114,7 +117,7 @@ Console.WriteLine(randomFormats());
 
 ``` CSharp
 // items with equal likelihood
-var items = Gen.Random.Items(new [] {"A", "B", "C"});
+var items = Gen.Random.Items("A", "B", "C");
 Console.WriteLine(items()); 
 
 // items with the likelihoods supplied

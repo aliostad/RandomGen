@@ -15,14 +15,35 @@ namespace RandomGen
             this._genLink = randomLink;
         }
 
+        public Func<byte> Bytes(byte min = 0, byte max = 100)
+        {
+            if (min >= max)
+                throw new ArgumentOutOfRangeException("min >= max");
+
+            var random = this._genLink.CreateRandom();
+
+            return () => (byte)random.Next(min, max);
+        }
+
         public Func<int> Integers(int min = 0, int max = 100)
         {
             if (min >= max)
                 throw new ArgumentOutOfRangeException("min >= max");
 
             var random = this._genLink.CreateRandom();
-            
+
             return () => random.Next(min, max);
+        }
+
+        public Func<uint> UnsignedIntegers(uint min = 0, uint max = 100)
+        {
+            if (min >= max)
+                throw new ArgumentOutOfRangeException("min >= max");
+
+            var range = max - min;
+            var random = this._genLink.CreateRandom();
+
+            return () => Convert.ToUInt32(min + (range * random.NextDouble()));
         }
 
         public Func<long> Longs(long min = 0, long max = 100)

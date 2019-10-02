@@ -57,6 +57,12 @@ namespace RandomGen
             }
         }
 
+        public Func<T> Items<T>(params T[] items)
+        {
+            var factory = this.Numbers.Integers(0, items.Length);
+            return () => items[factory()];
+        }
+
         public Func<T> Enum<T>(IEnumerable<double> weights = null)
             where T : struct, IConvertible
         {
