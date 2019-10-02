@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using RandomGen.Fluent;
+
+#if NET452
+using Newtonsoft.Json;
+#endif
+
+#if NETSTANDARD
+using System.Text.Json;
+#endif
+
 
 namespace RandomGen
 {
@@ -72,7 +76,15 @@ namespace RandomGen
             using (var reader = new StreamReader(stream))
             {
                 var content = reader.ReadToEnd();
+
+#if NET452
                 List<string> list = JsonConvert.DeserializeObject<List<string>>(content);
+#endif
+
+#if NETSTANDARD
+                List<string> list = JsonSerializer.Deserialize<List<string>>(content);
+#endif
+
                 return list.ToArray();
             }
         }
