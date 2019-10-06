@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/f5gtmgmm2mkrqg1k?svg=true)](https://ci.appveyor.com/project/aliostad/randomgen)
+[![Build Status](https://dev.azure.com/jkonecki/RandomGen/_apis/build/status/Continuous%20Integration?branchName=master)](https://dev.azure.com/jkonecki/RandomGen/_build/latest?definitionId=3&branchName=master)
 [![NuGet](https://img.shields.io/nuget/v/Randomgen.svg?style=flat)](https://www.nuget.org/packages/RandomGen/)
 
 RandomGen
