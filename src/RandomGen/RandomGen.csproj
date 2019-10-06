@@ -5,6 +5,10 @@
 		<AssemblyName>RandomGen</AssemblyName>
 		<PackageId>RandomGen</PackageId>
 	</PropertyGroup>
+  <PropertyGroup>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Data\blns.json" />
 	  <None Remove="Data\dictionary.txt" />
