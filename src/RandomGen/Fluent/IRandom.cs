@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace RandomGen.Fluent
 {
@@ -20,7 +18,7 @@ namespace RandomGen.Fluent
         /// <typeparam name="T"></typeparam>
         /// <param name="items"></param>
         /// <param name="weights">Optional weights affecting the likelihood of an item being chosen. Same length as items</param>
-        Func<T> Items<T>(IEnumerable<T> items, IEnumerable<double> weights);
+        Func<T> Items<T>(IEnumerable<T> items, IEnumerable<double> weights = null);
 
         /// <summary>
         /// Returns a gen that chooses randomly with equal weight for each item.
