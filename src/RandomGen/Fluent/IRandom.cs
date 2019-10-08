@@ -21,6 +21,46 @@ namespace RandomGen.Fluent
         Func<T> Items<T>(IEnumerable<T> items, IEnumerable<double> weights = null);
 
         /// <summary>
+        /// Returns a gen that chooses randomly from a list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="weights">Optional weights affecting the likelihood of an item being chosen. Same length as items</param>
+        Func<T> Items<T>(ICollection<T> items, IEnumerable<double> weights = null);
+
+        /// <summary>
+        /// Returns a gen that chooses randomly from a list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="weights">Optional weights affecting the likelihood of an item being chosen. Same length as items</param>
+        Func<T> Items<T>(IList<T> items, IEnumerable<double> weights = null);
+
+        /// <summary>
+        /// Returns a gen that chooses randomly from a list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="weights">Optional weights affecting the likelihood of an item being chosen. Same length as items</param>
+        Func<T> Items<T>(IReadOnlyCollection<T> items, IEnumerable<double> weights = null);
+
+        /// <summary>
+        /// Returns a gen that chooses randomly from a list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="weights">Optional weights affecting the likelihood of an item being chosen. Same length as items</param>
+        Func<T> Items<T>(IReadOnlyList<T> items, IEnumerable<double> weights = null);
+
+        /// <summary>
+        /// Returns a gen that chooses randomly from a list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="weights">Optional weights affecting the likelihood of an item being chosen. Same length as items</param>
+        Func<T> Items<T>(T[] items, IEnumerable<double> weights = null);
+
+        /// <summary>
         /// Returns a gen that chooses randomly with equal weight for each item.
         /// </summary>
         /// <typeparam name="T"></typeparam>

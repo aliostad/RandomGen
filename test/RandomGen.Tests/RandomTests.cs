@@ -483,22 +483,21 @@ namespace RandomGen.Tests
         }
 
         [Fact]
-        public void IsThreadSafe()
+        public async Task IsThreadSafe()
         {
             var dic = new ConcurrentDictionary<int, int>();
             var gen = Gen.Random.Numbers.Integers(1000000, 2000000);
-            Enumerable.Range(1, 1000).ToList().ForEach(x =>
-            Task.Run(() =>
-            {
-               var i = gen();
-               dic.AddOrUpdate(i, 0, (p, y) => 0);
-            }));
 
-            Thread.Sleep(1000);
+            var tasks = Enumerable.Range(1, 1000).Select(x =>
+                Task.Factory.StartNew(() =>
+                {
+                    var i = gen();
+                    dic.AddOrUpdate(x, i, (p, y) => 0);
+                }, TaskCreationOptions.LongRunning));
 
-            Assert.True(dic.Count > 950, dic.Count.ToString());
+            await Task.WhenAll(tasks);
 
+            Assert.Equal(1000, dic.Count);
         }
-
     }
 }

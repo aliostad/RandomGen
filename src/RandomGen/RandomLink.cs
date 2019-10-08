@@ -57,6 +57,21 @@ namespace RandomGen
             }
         }
 
+        public Func<T> Items<T>(ICollection<T> items, IEnumerable<double> weights = null)
+            => this.Items((IEnumerable<T>)items, weights);
+
+        public Func<T> Items<T>(IList<T> items, IEnumerable<double> weights = null)
+            => this.Items((IEnumerable<T>)items, weights);
+
+        public Func<T> Items<T>(IReadOnlyCollection<T> items, IEnumerable<double> weights = null)
+            => this.Items((IEnumerable<T>)items, weights);
+
+        public Func<T> Items<T>(IReadOnlyList<T> items, IEnumerable<double> weights = null)
+            => this.Items((IEnumerable<T>)items, weights);
+
+        public Func<T> Items<T>(T[] items, IEnumerable<double> weights = null)
+            => this.Items((IEnumerable<T>)items, weights);
+
         public Func<T> Items<T>(params T[] items)
         {
             var factory = this.Numbers.Integers(0, items.Length);
@@ -71,7 +86,7 @@ namespace RandomGen
             if (!enumType.IsEnum)
                 throw new NotSupportedException(enumType.Name + " is not an enum");
 
-            var values = (T[])System.Enum.GetValues(enumType);
+            var values = (IEnumerable<T>)System.Enum.GetValues(enumType);
 
             return this.Items(values, weights);
         }
