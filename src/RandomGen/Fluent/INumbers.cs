@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RandomGen.Fluent
 {
@@ -12,5 +13,6 @@ namespace RandomGen.Fluent
         Func<double> Doubles(double min, double max);
         Func<decimal> Decimals(decimal min = 0, decimal max = 1);
         Func<bool> Booleans();
+        Func<IEnumerable<int>> IntegersDrawNoPlacement(int min = 0, int max = 100, int take_number = 1);
     }
 }

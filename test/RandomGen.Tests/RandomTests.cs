@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -218,6 +219,26 @@ namespace RandomGen.Tests
                 Assert.NotEmpty(item);
                 Console.WriteLine(item);
             }
+        }
+        [Fact]
+        public void RandomItemsnoPlacement()
+        {
+            var take = 1000000;
+            Random rnd = new Random();
+            Stopwatch sw = new Stopwatch();
+            var input = Enumerable.Range(0, 10000000).ToList();
+            sw.Restart();
+            var Fisher_Yates_shuffle = Gen.Random.ItemsNoPlacement(input, take)().ToList();
+           
+            var Fisher_Yates_time = sw.Elapsed.TotalSeconds;
+            sw.Restart();
+            var normal = input.OrderBy(x => rnd.NextDouble()).Take(take).ToList();
+            var normal_time = sw.Elapsed.TotalSeconds;
+
+            //check for non duplicate items
+            Assert.False(Fisher_Yates_shuffle.GroupBy(x => x).Where(x => x.Count() > 1).Any());
+            Assert.False(normal.GroupBy(x => x).Where(x => x.Count() > 1).Any());
+            Console.WriteLine($"for large lists Fisher_Yates_shuffle should outperform random shuffling {Fisher_Yates_time}<{normal_time}");
         }
 
         [Fact]

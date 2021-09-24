@@ -86,5 +86,29 @@ namespace RandomGen
 
             return () => min + (range * (decimal)random.NextDouble());
         }
+
+        public Func<IEnumerable<int>> IntegersDrawNoPlacement(int min = 0, int max = 100, int take_number = 1)
+        {
+            if (min >= max)
+                throw new ArgumentOutOfRangeException("min >= max");
+            if (take_number > (max - min))
+                throw new ArgumentOutOfRangeException("available < take_number");
+
+            var pool = Enumerable.Range(0, max - min).ToArray();
+            var result = new List<int>();
+            var random = this._genLink.CreateRandom();
+            //Modern Fisher–Yates shuffle with O(n) complexity
+            for (int i = 0; i < take_number; i++)
+            {
+                var take = random.Next(min, max - i);
+                // swap taken index and current last
+                var buffer = pool[take];
+                pool[take] = pool[max - i - 1];
+                pool[max - i - 1] = buffer;
+                result.Add(buffer + min);
+            }
+
+            return () => result;
+        }
     }
 }
