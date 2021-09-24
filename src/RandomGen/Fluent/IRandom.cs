@@ -79,9 +79,9 @@ namespace RandomGen.Fluent
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="items"></param>
-        /// <param name="take_number">The numbers of desired drawn elements</param>
+        /// <param name="take">The numbers of desired drawn elements</param>
+        Func<IEnumerable<T>> ItemsNoPlacement<T>(IEnumerable<T> items, int take = 1);
 
-        Func<IEnumerable<T>> ItemsNoPlacement<T>(IEnumerable<T> items, int take_number = 1);
         /// <summary>
         /// Generates random country names
         /// Based on System.Globalisation
