@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RandomGen.Fluent
 {
@@ -6,6 +7,7 @@ namespace RandomGen.Fluent
     {
         Func<byte> Bytes(byte min = byte.MinValue, byte max = byte.MaxValue);
         Func<int> Integers(int min = 0, int max = 100);
+        Func<IEnumerable<int>> IntegersDrawNoPlacement(int min = 0, int max = 100, int take = 1);
         Func<uint> UnsignedIntegers(uint min = 0, uint max = 100);
         Func<long> Longs(long min = 0, long max = 100);
         IDouble Doubles();

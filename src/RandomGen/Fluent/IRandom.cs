@@ -75,6 +75,14 @@ namespace RandomGen.Fluent
         Func<T> Enum<T>(IEnumerable<double> weights = null) where T : struct, IConvertible;
 
         /// <summary>
+        /// Returns a list of randomly drawn elements without placements
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="take">The numbers of desired drawn elements</param>
+        Func<IEnumerable<T>> ItemsNoPlacement<T>(IEnumerable<T> items, int take = 1);
+
+        /// <summary>
         /// Generates random country names
         /// Based on System.Globalisation
         /// </summary>

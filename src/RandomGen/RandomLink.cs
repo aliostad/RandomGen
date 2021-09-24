@@ -99,5 +99,13 @@ namespace RandomGen
 
             return this.Items(data);
         }
+
+        public Func<IEnumerable<T>> ItemsNoPlacement<T>(IEnumerable<T> items, int take = 1)
+        {
+            var indexes = this.Numbers.IntegersDrawNoPlacement(0, items.Count(), take)();
+            var result = indexes.Select(i => items.ElementAt(i));
+            
+            return () => result;
+        }
     }
 }
