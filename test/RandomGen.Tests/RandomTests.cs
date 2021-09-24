@@ -220,25 +220,27 @@ namespace RandomGen.Tests
                 Console.WriteLine(item);
             }
         }
+        
         [Fact]
-        public void RandomItemsnoPlacement()
+        public void RandomItemsNoPlacement()
         {
             var take = 1000000;
-            Random rnd = new Random();
-            Stopwatch sw = new Stopwatch();
+            var random = new Random();
             var input = Enumerable.Range(0, 10000000).ToList();
+            
+            var sw = Stopwatch.StartNew();
+            var fisherYatesShuffle = Gen.Random.ItemsNoPlacement(input, take)().ToList();
+            var fisherYatesTime = sw.Elapsed.TotalSeconds;
+            
             sw.Restart();
-            var Fisher_Yates_shuffle = Gen.Random.ItemsNoPlacement(input, take)().ToList();
-           
-            var Fisher_Yates_time = sw.Elapsed.TotalSeconds;
-            sw.Restart();
-            var normal = input.OrderBy(x => rnd.NextDouble()).Take(take).ToList();
-            var normal_time = sw.Elapsed.TotalSeconds;
+            var normal = input.OrderBy(x => random.NextDouble()).Take(take).ToList();
+            var normalTime = sw.Elapsed.TotalSeconds;
 
             //check for non duplicate items
-            Assert.False(Fisher_Yates_shuffle.GroupBy(x => x).Where(x => x.Count() > 1).Any());
+            Assert.False(fisherYatesShuffle.GroupBy(x => x).Where(x => x.Count() > 1).Any());
             Assert.False(normal.GroupBy(x => x).Where(x => x.Count() > 1).Any());
-            Console.WriteLine($"for large lists Fisher_Yates_shuffle should outperform random shuffling {Fisher_Yates_time}<{normal_time}");
+            
+            Console.WriteLine($"For large lists Fisher Yates shuffle should outperform random shuffling: {fisherYatesTime}<{normalTime}");
         }
 
         [Fact]
