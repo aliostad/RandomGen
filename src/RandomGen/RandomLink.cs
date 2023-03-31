@@ -94,7 +94,7 @@ namespace RandomGen
         public Func<string> Countries()
         {
             var data = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                .Select(culture => new RegionInfo(culture.LCID).EnglishName)
+                .Select(culture => new RegionInfo(culture.Name).EnglishName)
                 .Distinct();
 
             return this.Items(data);
